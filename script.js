@@ -1,13 +1,13 @@
 console.log("Welcome!")
 const clog = console.log
 class Todo {
-    constructor(title){
-        this.title = title,
-        this.description = ""
+    constructor(title, description, priority, ...tags){
+        this.title = title
+        this.description = description
         this.group = "My Projects"
-        this.priority = "Normal"
+        this.priority = priority
         this.color = "default"
-        this.tags = []
+        this.tags = [...tags]
         this.note = ""
         this.creationDate = new Date()
         this.dueDate = ""
@@ -381,3 +381,4 @@ const todo3 = new Todo("Good Pj", "Stay consistent learning TOP")
 
 todo1.setTags("tag1", "tag2", "tag3") */
 // todo2.setTags("tag4", "tag5")
+/* clog(new Todo("No Title?") ) */

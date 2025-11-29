@@ -5,8 +5,80 @@
     <title>Todo List</title>
     <link rel="stylesheet" href="styles.css">
     <script src="./script.js" defer></script>
+    <script src="./script-2.js" defer></script>
     <body>
         <h1>Todo List</h1>
+        <button class="add-todo-button">Add Task</button>
+
+        <dialog class="add-todo-dialog" closedby="closerequest" open > 
+            <div class="dialog-heading">
+                <svg class="cancel-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <form id="add-todo" action="#" method="dialog">
+                <p>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="todo_title" placeholder="Name your task">
+                </p>
+
+                <p>
+                    <label for="description">Description</label>
+                    <textarea type="text" id="description" name="todo_description" placeholder="Describe your task" rows="4"></textarea>
+                </p> 
+
+               <!--  <p>
+                    <label for="group">Group
+                        <select id="group" name="todo_group">
+                        </select>
+                    </label>
+                </p> -->
+
+                <!-- <p>
+                    <label for="note">Note</label>
+                    <textarea type="text" id="note" name="todo_note" placeholder="Add a quick note"></textarea>
+                </p> -->
+
+                <p>
+                    <label for="tags">Tags</label>
+                    <input type="text" id="tags" name="todo_tags" placeholder="Add some tags (tag1, tag2, etc.)">
+                </p>
+
+                <div class="task-priority">
+                        <p class="priority-box-title">Priority</p>
+                        <div class="priority-container">
+                            <div class="priority">
+                                <input type="radio" id="priority-low" name="todo_priority" value="0">
+                                <label for="priority-low"><h4>Low</h4></label>
+                            </div>
+                            <div class="priority">
+                                <input type="radio" id="priority-normal" name="todo_priority" value="1" checked>
+                                <label for="priority-normal"><h4>Normal</h4></label>
+                            </div>
+                            <div class="priority">
+                                <input type="radio" id="priority-high" name="todo_priority" value="2">
+                                <label for="priority-high"><h4>High</h4></label> 
+                            </div>
+                        </div>
+                     
+                </div>
+
+                <!-- <div class="task-color">
+                    <label for="color">Color
+                        <select id="color" name="color">
+                            <option value="default" selected>Default</option>
+                            <option value="oklch(70.7% 0.165 254.624)">Blue</option>
+                            <option value="oklch(85.2% 0.199 91.936)">Yellow</option>
+                            <option value="oklch(70.4% 0.191 22.216)">Red</option>
+                        </select>
+                    </label>
+                    <div class="color-preview"></div>  
+                </div> -->
+                <p>
+                    <button class="save-todo-button" type="submit" form="add-todo">SAVE</button>
+                </p>
+                
+                
+            </form>
+        </dialog>
         
     </body>
 </html>
