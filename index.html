@@ -4,15 +4,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="./script.js" defer></script>
-    <script src="./script-2.js" defer></script>
+    <script src="./script-todo.js" defer></script> 
+    <!-- <script src="./script-dialog.js" defer></script> -->
+    <script src="./script-main-ui.js" defer></script>
     <body>
-        <h1>Todo List</h1>
-        <button class="add-todo-button">Add Task</button>
+        <!-- <h1>Todo List</h1>
+        <button class="add-todo-button">Add Task</button> -->
 
-        <dialog class="add-todo-dialog" closedby="closerequest" open > 
-            <div class="dialog-heading">
-                <svg class="cancel-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        <dialog class="add-todo-dialog" closedby="closerequest" > 
+            <div class="dialog-heading"> 
+                <button class="cancel-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+                 Go back</button>
+                <!-- <svg class="cancel-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+                <div>Go back</div> -->
             </div>
             <form id="add-todo" action="#" method="dialog">
                 <p>
@@ -79,6 +83,42 @@
                 
             </form>
         </dialog>
+<!-- header -->
+
+        <div class="main-container">
+            <div class="main-children top" id="top-header">
+              <div class="dashboard-div">
+                <div class="logo"></div>
+                <h3>Dashboard</h3>
+            </div>
+              <div class="search-div">
+                <input type="text" id="search" name="todo_search" placeholder="Search">
+                <label for="search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg></label>
+            </div>
+              <div class="notification-div">Notifications</div> 
+            </div>
+            <div class="main-children left" id="left-panel">
+                <div class="left-box1">
+                    <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>My projects</button>
+                    <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>All tasks</button>
+                    <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>Group</button>
+                    <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>Tags</button>
+                </div>
+                <div class="left-box2">
+                    <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>Settings</button>
+                    <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>Help</button>
+                </div>
+                
+                
+            </div>
+            <div class="main-children middle" id="middle-content">
+                <div class="todo-item">
+                    <div class="title">Task title</div>
+                    <div class="description">Task description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam laboriosam iure soluta!</div>
+                    <div class="priority">Task priority</div>
+                </div>
+            </div>
+        </div>
         
     </body>
 </html>

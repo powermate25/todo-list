@@ -1,7 +1,7 @@
 console.log("Hello!")
 const addNewTodoDialog = document.querySelector(".add-todo-dialog")
 const addNewTodoBtn = document.querySelector(".add-todo-button")
-const cancelDialogBtn = document.querySelector(".cancel-button")
+const cancelDialogBtn = document.querySelector(".cancel-btn")
 const todoTitle = document.querySelector("input[id=title]")
 const todoDescription = document.querySelector("textarea[id=description]")
 const todoTags = document.querySelector("input[id=tags]")
