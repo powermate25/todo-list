@@ -173,9 +173,11 @@ dialog form button:hover {
     min-height: 670px;
     /* justify-items: center; */
 }
-.main-container div {
-    /* border: 1px solid blue; */
-}
+
+/* .main-container div {
+    border: 1px solid blue;
+} */
+
 #top-header {
     /* border: 1px solid green; */
     grid-column: 1 / 13;
@@ -197,6 +199,7 @@ dialog form button:hover {
 .dashboard-div .logo {
     width: 2.8rem;
     height: 2.8rem;
+    fill: #0066ff;
     /* border-radius: 50%; */
 }
 
@@ -244,15 +247,76 @@ dialog form button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem;
+    padding: 0;
     
 }
 
+.notification-div .additional-actions {
+    width: 40%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.additional-actions .icon-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.additional-actions svg {
+    height: 1.7rem;
+    width: 1.7rem;
+    border-radius: 6px;
+    fill: #ffffff;
+    background-color: #0066ff;
+    border: 6px solid #0066ff;
+}
+
+.notification-div .profile {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    justify-self: end;
+    /* border: 2px solid red; */
+    padding: 0;
+    
+}
+
+.welcome-info-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    height: 1.7rem;
+    width: 8rem;
+    height: 100%;
+    padding: 0.4rem;
+}
+
+.welcome-info-box .info1{
+    margin: 0;
+    padding: 0;
+    font-size: 80%;
+    font-weight: 600;
+}
+
+.welcome-info-box .info2 {
+    margin: 0;
+    padding: 0;
+    font-size: 60%;
+}
+
 .notification-div .profile-pic {
-    width: 4rem;
-    height: 4rem;
+    width: 3.7rem;
+    height: 3.7rem;
     /* border: 1px solid blue; */
     border-radius: 50%;
+    background-image: url(./images/profile-pic.jpg);
+    background-size: cover;
 }
 
 #left-panel {
@@ -277,15 +341,16 @@ dialog form button:hover {
     border: 1px solid oklch(70.3% 5% 259.815 / 0.3);
     border-radius: 6px;
     margin: 0.4rem 0;
-    font-weight: 700;
+    font-weight: 600;
     font-family: inherit;
     font-size: 1.1rem;
     text-align: start;
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 0.2rem;
+    gap: 0.6rem;
     background-color: #ffffff;
+    fill: #0066ff;
 }
 
 .left button:hover {
@@ -317,7 +382,11 @@ dialog form button:hover {
 .todo-item {
     display: grid;
     grid-template-columns: 70% 30%;
-    grid-template-rows:  2rem 4rem;
+    grid-template-rows:  2rem 4rem 2rem;
+    border: 1px solid red;
+    height: 10rem;
+    max-height: fit-content;
+    padding: 0.4rem;
 }
 
 .todo-item .title {
@@ -325,14 +394,38 @@ dialog form button:hover {
     grid-row: 1 / 2;
     height: 100%;
     align-content: center;
+    font-weight: 600;
+    
 }
 
 .todo-item .description {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
     height: 100%;
-    align-content: center; 
+    align-content: start;
+    
 }
+
+.todo-item .overview {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.todo-item .priority, .todo-item .status {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.todo-item .overview p {
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
 
 .todo-item .action {
     grid-column: 2 / 3;
@@ -341,7 +434,7 @@ dialog form button:hover {
     grid-template-columns: 1fr 1fr;
     gap: 0.4rem;
     justify-items: start;
-    
+    border: 1px solid red; 
 }
 
 .action button {
@@ -373,9 +466,19 @@ dialog form button:hover {
     border: 1px solid oklch(70.3% 5% 259.815 / 0.3);
     box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
 }
+
+.todo-note svg {
+    width: 10%;
+    fill: #0066ff;
+}
 .note-title {
     align-content: center;
     padding: 0 1rem;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 0.4rem;
+
 }
 
 .note-details {
