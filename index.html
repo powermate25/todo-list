@@ -11,7 +11,7 @@
         <!-- <h1>Todo List</h1>
         <button class="add-todo-button">Add Task</button> -->
 
-        <dialog class="add-todo-dialog" closedby="closerequest" > 
+        <dialog class="add-todo-dialog" closedby="closerequest">  
             <div class="dialog-heading"> 
                 <button class="cancel-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
                  Go back</button>
@@ -95,7 +95,10 @@
                 <input type="text" id="search" name="todo_search" placeholder="Search">
                 <label for="search"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg></label>
             </div>
-              <div class="notification-div">Notifications</div> 
+              <div class="notification-div">
+                <h3>Notifications</h3>
+                <div class="profile-pic"></div>
+            </div> 
             </div>
             <div class="main-children left" id="left-panel">
                 <div class="left-box1">
@@ -114,8 +117,15 @@
             <div class="main-children middle" id="middle-content">
                 <div class="todo-item">
                     <div class="title">Task title</div>
-                    <div class="description">Task description Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam laboriosam iure soluta!</div>
-                    <div class="priority">Task priority</div>
+                    <div class="description">Task description Lorem ipsum dolor sit amet consectetur adipisicing elit!</div>
+                    <div class="action">
+                        <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>Edit</button>
+                        <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>Delete</button>
+                    </div>  
+                </div>
+                <div class="todo-note">
+                    <div class="note-title">Daily note</div>
+                    <textarea class="note-details" placeholder="Quick note"></textarea>
                 </div>
             </div>
         </div>
