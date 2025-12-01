@@ -34,7 +34,7 @@ displayItem = function(){
     taskDescription.className = "description"
     const taskStatus = document.createElement("div")
     taskStatus.className = ("status-value")
-
+ 
 
 }
 
