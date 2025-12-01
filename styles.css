@@ -399,7 +399,7 @@ dialog form button:hover {
 .todo-item .title {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    height: 100%;
+    height: fit-content;
     align-content: center;
     font-weight: 600;
     
@@ -415,6 +415,11 @@ dialog form button:hover {
     line-height: 1rem;
     /* border: 1px solid red; */
     
+}
+
+.todo-item summary {
+    list-style: none;
+    cursor: pointer;
 }
 
 .todo-item .overview {
@@ -530,7 +535,7 @@ dialog form button:hover {
 }
 
 .todo-note svg {
-    width: 10%;
+    width: 8%;
     fill: #0066ff;
 }
 .note-title {
@@ -540,6 +545,7 @@ dialog form button:hover {
     justify-content: start;
     align-items: center;
     gap: 0.4rem;
+    font-weight: 600;
 
 }
 
