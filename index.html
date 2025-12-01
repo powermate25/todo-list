@@ -83,6 +83,8 @@
                 
             </form>
         </dialog>
+
+        
 <!-- header -->
 
         <div class="main-container">
@@ -103,7 +105,10 @@
                 <div class="profile">
                     <div class="welcome-info-box">
                         <p class="info1">Welcome back,</p>
-                        <p class="info2">Current Date</p>
+                        <div class="info2">
+                            <p class="date-now"></p>
+                            <p class="time-now"></p>
+                        </div>
                     </div>
                     <div class="profile-pic"></div>
                 </div>
@@ -125,27 +130,32 @@
                 
             </div>
             <div class="main-children middle" id="middle-content">
-                <div class="todo-item">
-                    <details open>
-                        <summary class="title">Awesome Task title</summary>
-                        <div class="description">Greatest task description Lorem ipsum dolor sit amet consectetur adipisicing elit!</div>
-                    </details>
-                    <div class="overview">
-                        <div class="status">
-                            <p>Status:</p>
-                            <p>Unfinished</p>
+                <div class="middle-left todo-list-container">
+
+                    <div class="todo-item">
+                        <details open>
+                            <summary class="title">Awesome Task Title</summary>
+                            <div class="description">Greatest task description Lorem ipsum dolor sit amet consectetur adipisicing elit!</div>
+                        </details>
+                        <div class="overview">
+                            <div class="status">
+                                <p>Status:</p>
+                                <p class="status-value">Unfinished</p>
+                            </div>
+                            <div class="separator"></div>
+                            <div class="priority">
+                                <p>Priority:</p>
+                                <p class="priority-value">Normal</p>
+                            </div>
                         </div>
-                        <div class="separator"></div>
-                        <div class="priority">
-                            <p>Priority:</p>
-                            <p>Normal</p>
+                        <div class="action">
+                            <button class="edit-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,3C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19H5V5H12V3H5M17.78,4C17.61,4 17.43,4.07 17.3,4.2L16.08,5.41L18.58,7.91L19.8,6.7C20.06,6.44 20.06,6 19.8,5.75L18.25,4.2C18.12,4.07 17.95,4 17.78,4M15.37,6.12L8,13.5V16H10.5L17.87,8.62L15.37,6.12Z" /></svg>Edit</button>
+                            <button class="delete-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>Delete</button>
                         </div>
                     </div>
-                    <div class="action">
-                        <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5,3C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19H5V5H12V3H5M17.78,4C17.61,4 17.43,4.07 17.3,4.2L16.08,5.41L18.58,7.91L19.8,6.7C20.06,6.44 20.06,6 19.8,5.75L18.25,4.2C18.12,4.07 17.95,4 17.78,4M15.37,6.12L8,13.5V16H10.5L17.87,8.62L15.37,6.12Z" /></svg>Edit</button>
-                        <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5Z" /></svg>Delete</button>
-                    </div>
+
                 </div>
+                
                 <div class="todo-note">
                     <div class="note-title">Daily note<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,2C22,2 14.36,1.63 8.34,9.88C3.72,16.21 2,22 2,22L3.94,21C5.38,18.5 6.13,17.47 7.54,16C10.07,16.74 12.71,16.65 15,14C13,13.44 11.4,13.57 9.04,13.81C11.69,12 13.5,11.6 16,12L17,10C15.2,9.66 14,9.63 12.22,10.04C14.19,8.65 15.56,7.87 18,8L19.21,6.07C17.65,5.96 16.71,6.13 14.92,6.57C16.53,5.11 18,4.45 20.14,4.32C20.14,4.32 21.19,2.43 22,2Z" /></svg></div>
                     <textarea class="note-details" placeholder="Important or quick note"></textarea>

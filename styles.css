@@ -184,12 +184,13 @@ dialog form button:hover {
     grid-row: 1 / 2; 
     padding: 0 1rem;
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 25% 45% 30%;
     align-items: center;
     border-color: oklch(70.3% 5% 259.815 / 0.3);
     box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
     /* border: 1px solid red; */
 }
+
 
 .dashboard-div {
     display: flex;
@@ -281,7 +282,7 @@ dialog form button:hover {
 .notification-div .profile {
     width: 60%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 0.4rem;
     justify-self: end;
@@ -296,9 +297,10 @@ dialog form button:hover {
     justify-content: center;
     align-items: end;
     height: 1.7rem;
-    width: 8rem;
+    width: fit-content;
     height: 100%;
     padding: 0.4rem;
+    
 }
 
 .welcome-info-box .info1{
@@ -306,15 +308,39 @@ dialog form button:hover {
     padding: 0;
     font-size: 80%;
     font-weight: 600;
+
 }
 
 .welcome-info-box .info2 {
+    
     margin: 0;
     padding: 0;
     font-size: 60%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 1rem;
+    width: 8rem;
+    
+    
 }
 
+.info2 .date-now {
+    width: 74%;
+    text-align: end;
+    padding: 0 0.2rem;
+    
+}
+
+.info2 .time-now {
+    width: 26%;
+    text-align: start;
+    /* border: 1px solid blue;  */
+}
+
+
 .notification-div .profile-pic {
+    margin: 0 2rem 0 0rem; 
     width: 3.7rem;
     height: 3.7rem;
     /* border: 1px solid blue; */
@@ -386,9 +412,8 @@ dialog form button:hover {
 .todo-item {
     display: grid;
     grid-template-columns: 70% 30%;
-    grid-template-rows:  2rem 2.6rem 1rem;
+    grid-template-rows: 1fr;
     height: fit-content;
-    max-height: fit-content;
     padding: 0.4rem;
     border: 1px solid oklch(70.3% 5% 259.815 / 0.3);
     box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
@@ -396,24 +421,23 @@ dialog form button:hover {
     /* border: 1px solid red; */
 }
 
+
 .todo-item .title {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    height: fit-content;
+    height: 2rem;
     align-content: center;
     font-weight: 600;
+    /* border: 1px solid green; */
     
     
 }
 
 .todo-item .description {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    height: 100%;
-    align-content: start;
+    padding: 0 0 0.4rem 0;
     font-size: 0.8rem;
     line-height: 1rem;
-    /* border: 1px solid red; */
+   /*  border: 1px solid red; */
     
 }
 
@@ -423,8 +447,6 @@ dialog form button:hover {
 }
 
 .todo-item .overview {
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -435,11 +457,13 @@ dialog form button:hover {
 .overview .separator {
     height: 0.8rem;
     border: 1px solid #ffffff;
-    box-shadow: -0px 1px 2px 1px oklch(25.615% 0.00003 271.152 / 0.212)
+   /*  box-shadow: 0px 1px 2px 1px oklch(25.615% 0.00003 271.152 / 0.1) */
+    box-shadow: -0px 2px 4px 1px oklch(25.615% 0.00003 271.152 / 0.1)
     
 
 }
-.todo-item .overview .status, .todo-item .overview .priority {
+.overview .status, .overview .priority {
+    height: 1rem;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -472,19 +496,20 @@ dialog form button:hover {
 
 
 .todo-item .action {
+    justify-self: end; 
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     display: flex;
-    /* grid-template-columns: 1fr 1fr; */
     justify-content: center;
-    /* border: 1px solid red; */
+    align-items: center;
+    /* border: 1px solid blue; */
     width: 90%;
-    justify-self: end; 
+    height: 2rem;
+    
 }
 
 .action button {
     width: 6rem;
-    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
