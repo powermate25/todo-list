@@ -188,6 +188,7 @@ dialog form button:hover {
     align-items: center;
     border-color: oklch(70.3% 5% 259.815 / 0.3);
     box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
+    /* border: 1px solid red; */
 }
 
 .dashboard-div {
@@ -204,22 +205,24 @@ dialog form button:hover {
 }
 
 .search-div {
+    align-self: center;
+    justify-self: center;
     display: flex;
-    justify-content: space-between; 
+    justify-content: end; 
     align-items: center;
     height: 2rem;
-    align-self: center;
-    width: 60%;
+    width: fit-content;
     border-radius: 6px;
     border: 1px solid oklch(70.3% 5% 259.815 / 0.3);
     box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
+    /* border: 1px solid red; */
     
     
 }
 
 .search-div label {
     width: 2rem;
-    height: 100%;
+    height: 2rem;
     /* border: 1px solid red; */
     display: flex;
     justify-content: center;
@@ -233,14 +236,15 @@ dialog form button:hover {
 }
 
 .search-div input {
-    /* border: 1px solid red; */
-    width: 90%;
+    
+    width: 39rem;
     height: 100%;
     padding: 0 1rem;
     font-family: inherit;
     border-radius: 6px;
     outline: none;
     border: none; 
+    /* border: 3px solid green; */
 }
 
 .notification-div {
@@ -382,11 +386,14 @@ dialog form button:hover {
 .todo-item {
     display: grid;
     grid-template-columns: 70% 30%;
-    grid-template-rows:  2rem 4rem 2rem;
-    border: 1px solid red;
-    height: 10rem;
+    grid-template-rows:  2rem 2.6rem 1rem;
+    height: fit-content;
     max-height: fit-content;
     padding: 0.4rem;
+    border: 1px solid oklch(70.3% 5% 259.815 / 0.3);
+    box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
+    border-radius: 6px;
+    /* border: 1px solid red; */
 }
 
 .todo-item .title {
@@ -396,6 +403,7 @@ dialog form button:hover {
     align-content: center;
     font-weight: 600;
     
+    
 }
 
 .todo-item .description {
@@ -403,6 +411,9 @@ dialog form button:hover {
     grid-row: 2 / 3;
     height: 100%;
     align-content: start;
+    font-size: 0.8rem;
+    line-height: 1rem;
+    /* border: 1px solid red; */
     
 }
 
@@ -412,47 +423,98 @@ dialog form button:hover {
     display: flex;
     justify-content: start;
     align-items: center;
+    gap: 0.4rem;
+    /* border: 1px solid red; */
 }
 
-.todo-item .priority, .todo-item .status {
+.overview .separator {
+    height: 0.8rem;
+    border: 1px solid #ffffff;
+    box-shadow: -0px 1px 2px 1px oklch(25.615% 0.00003 271.152 / 0.212)
+    
+
+}
+.todo-item .overview .status, .todo-item .overview .priority {
     display: flex;
     justify-content: start;
     align-items: center;
+    gap: 0.2rem;
+    color: rgb(107, 107, 107);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: rgb(107, 107, 107);
+}
+.overview .status p:nth-of-type(2) {
+    color: red;
+    cursor: pointer;
 }
 
-.todo-item .overview p {
+.overview .priority p:nth-of-type(2) {
+    color: #0066ff;
+    cursor: pointer;
+}
+
+/* .todo-item .overview span {
+    font-size: 0.8rem;
     margin: 0;
     padding: 0;
     color: red;
+} */
+
+.overview p:last-of-type span {
+    color: #0066ff;
 }
 
 
 .todo-item .action {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.4rem;
-    justify-items: start;
-    border: 1px solid red; 
+    display: flex;
+    /* grid-template-columns: 1fr 1fr; */
+    justify-content: center;
+    /* border: 1px solid red; */
+    width: 90%;
+    justify-self: end; 
 }
 
 .action button {
-    height: 100%;
+    width: 6rem;
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.4rem;
-    background-color: #0066ff;
-    border: 1px solid #0066ff;
-    color: #ffffff;
-    fill: #ffffff;
+    gap: 0.2rem;
+    background-color: transparent;
+    border: none;
+    fill: #0066ff;
     border-radius: 6px;
+    /* border: 1px solid blue; */
+    margin: 0;
+    cursor: pointer;
+    color: #0066ff;
+    
 
 }
 
+.action button:last-of-type {
+    color: red;
+    fill: red;
+}
+
+.action button:hover {
+    color: #0066ff;
+    fill: #0066ff;
+    border: 1px solid #0066ff;
+}
+
+.action button:last-of-type:hover {
+    color: red;
+    fill: red; 
+    border: 1px solid red;
+}
+
 .action svg {
-    width: 20%;
+    width: 1.3rem;
 }
 
 .todo-note {
