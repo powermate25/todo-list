@@ -623,7 +623,7 @@ dialog form button:hover {
 }
 
 .note-details:focus {
-    border: 2px solid #0066ff;
+    border: 2px solid #0066ff; 
     outline: none;
     box-shadow: 1px 2px 0px 1px oklch(50.3% 1% 259.815 / 0.4);
 } 
