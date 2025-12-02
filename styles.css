@@ -73,7 +73,7 @@ dialog form {
 }
 
 ::backdrop {
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
 }
 
 form p {
@@ -398,7 +398,7 @@ dialog form button:hover {
     grid-column: 4 / 13;
     grid-row: 2 / 3;
     padding: 1rem;
-    margin: 4rem 2rem;
+    margin: 1rem 2rem;
     border-radius: 6px;
     border: 1px solid oklch(70.3% 5% 259.815 / 0.3);
     box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
@@ -408,6 +408,39 @@ dialog form button:hover {
     /* border: 3px solid rgb(255, 0, 183); */
     justify-content: start;
 }
+
+.middle-left-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: fit-content;
+    margin: 0 0 1rem 0;
+
+}
+
+.middle-left-header h2 {
+    margin: 0;
+}
+
+.middle-left-header button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.8rem;
+    height: 2.8rem; 
+    border: 1px solid #0066ff;
+    border-radius: 50%; 
+    background-color: #0066ff;
+    color: #ffffff;
+    fill: #ffffff;
+    font-family: inherit;
+    font-size: 1rem;
+    margin: 0 1rem; 
+    border: 1px solid oklch(70.3% 5% 259.815 / 0.3);
+    box-shadow: 0px 1px 4px 2px oklch(70.3% 1% 259.815 / 0.6);
+    }
+
 
 .todo-item {
     display: grid;
@@ -458,7 +491,7 @@ dialog form button:hover {
     height: 0.8rem;
     border: 1px solid #ffffff;
    /*  box-shadow: 0px 1px 2px 1px oklch(25.615% 0.00003 271.152 / 0.1) */
-    box-shadow: -0px 2px 4px 1px oklch(25.615% 0.00003 271.152 / 0.1)
+    box-shadow: 0px 2px 4px 1px oklch(25.615% 0.00003 271.152 / 0.1)
     
 
 }
