@@ -1,6 +1,7 @@
 console.log("Working!")
 
-// Date Display
+/// Date Display logic start
+
 const dateDiv = document.querySelector(".date-now")
 const timeDiv = document.querySelector(".time-now")
 
@@ -15,31 +16,36 @@ setInterval(
    // clog("tick")
     }, 1000)
 
-// Todo items display
-const todoListContainer = document.querySelector(".todo-list-container")
-const editTaskBtn = document.querySelector(".edit-button")
-const deleteTaskBtn = document.querySelector(".delete-button")
+/// Date Display logic end
 
+/// Preparing container fn start
 
-/// prepareContainer fn start
 DisplayTodoItems = function(){
-     // Step1: Loading todoList from storage 
+    const todoListContainer = document.querySelector(".task-list-container")
+    const editTaskBtn = document.querySelector(".edit-button")
+    const deleteTaskBtn = document.querySelector(".delete-button")
+
+    todoListContainer.textContent = ""
+    // Step1: Loading todoList from storage 
     allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
     // Set loop for each item in storage
 for(task in allTaskFromStorage){
     // Loop start
-
     clog(allTaskFromStorage[task])
     currentTask = allTaskFromStorage[task]
     
     // Step2: Defining containers
     const todoItem = document.createElement("div")
     todoItem.className = "todo-item"
+    todoItem.id = currentTask.id
+    clog(todoItem)
     const detailsEle = document.createElement("details")
-    detailsEle.setAttribute("open", "")
+    // detailsEle.setAttribute("open", "")
     const summaryEle = document.createElement("summary")
     summaryEle.className = "title"
+    // summaryEle.setAttribute("contenteditable", "true") 
     const descriptionDiv = document.createElement("div")
+    // descriptionDiv.setAttribute("contenteditable", "true")
     descriptionDiv.className = "description"
     const overviewDiv = document.createElement("div")
     overviewDiv.className = "overview"
@@ -58,11 +64,24 @@ for(task in allTaskFromStorage){
     const actionDiv = document.createElement("div")
     actionDiv.className = "action"
     const editTaskBtn = document.createElement("button")
+    editTaskBtn.id = currentTask.id
     editTaskBtn.className = "edit-button"
     const deleteTaskBtn = document.createElement("button")
+    deleteTaskBtn.id = currentTask.id
     deleteTaskBtn.className = "delete-button"
 
-
+    // Preparing action buttons icons
+    const editIconImg = document.createElement("img")
+    editIconImg.setAttribute("src", "./images/icons/edit.svg")
+    editIconImg.id = currentTask.id
+    editIconImg.style.width ="1.3rem"
+     
+    const deleteIconImg = document.createElement("img")
+    deleteIconImg.setAttribute("src", "./images/icons/trash-can.svg")
+    deleteIconImg.id = currentTask.id
+    deleteIconImg.style.width ="1.3rem" 
+    
+    // Done preparing svg object
 
     // Initialize task details
     let tempTitle = currentTask.title
@@ -82,8 +101,7 @@ for(task in allTaskFromStorage){
     statusValueP.textContent = tempStatus
     priorityTitleP.textContent = "Priority"
     priorityValueP.textContent = tempPriority
-    editTaskBtn.textContent = "Edit"
-    deleteTaskBtn.textContent = "Delete"
+
 
     // Appending children to parent Divs
     todoItem.append(detailsEle)
@@ -105,28 +123,27 @@ for(task in allTaskFromStorage){
     actionDiv.append(editTaskBtn)
     actionDiv.append(deleteTaskBtn)
 
-    todoListContainer.append(todoItem)
+    editTaskBtn.append(editIconImg)
+    editTaskBtn.append("Edit")
+    deleteTaskBtn.append(deleteIconImg)
+    deleteTaskBtn.append("Delete")
 
+    todoListContainer.append(todoItem)
 // Loop end
 }
 }
-/// prepareContainer fn end
-DisplayTodoItems() 
-// const todo1 = new Todo("Awesome Title", "More Details", 2)
 
-//// Daily note Display
+/// Preparing container fn end
+DisplayTodoItems() 
+
+
+/// Daily Note display logic start
 
 const dailyNote = document.querySelector(".todo-note textarea")
 const localNote = localStorage.getItem("toDoAppFolder2458987545_dailyNote")
 let loadNote = function (){ dailyNote.value = JSON.parse(localNote) }
-let saveNote = function (){
-    localStorage.setItem( "toDoAppFolder2458987545_dailyNote", ` ${JSON.stringify(dailyNote.value)}` )  
-}
-
+let saveNote = function (){ localStorage.setItem( "toDoAppFolder2458987545_dailyNote", ` ${JSON.stringify(dailyNote.value)}` )  }
 dailyNote.addEventListener( "input", () => {saveNote()} ) 
-
 loadNote()
 
-
-/// Dialog display
-/// Button handling module Add task button
+/// Daily Note display logic end
