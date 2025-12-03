@@ -9,6 +9,7 @@ const todoDescription = document.querySelector("textarea[id=description]")
 const todoTags = document.querySelector("input[id=tags]")
 const todoPriority = document.querySelectorAll("input[name=todo_priority]")
 const saveNewTodoBtn = document.querySelector("dialog form .save-todo-button")
+const taskListContainer = document.querySelector(".task-list-container")
 
 // Opening dialog
 addNewTask.forEach(i =>{
@@ -23,7 +24,7 @@ cancelDialogBtn.addEventListener("click", () =>{
 
 // Update display on dialog close event
 addNewTodoDialog.addEventListener("close", () => {
-    DisplayTodoItems()
+    displayTodoItems()
 })
 
 // Getting selected radio button value
@@ -53,11 +54,12 @@ saveNewTodoBtn.addEventListener("click", () =>{
 /// Dialog Events end
 
 /// Action buttons events start
-const editTaskButtons = document.querySelectorAll(".edit-button") 
-clog(editTaskButtons)
+const editTaskActionButtons = document.querySelectorAll(".edit-button")
+const deleteActionButtons = document.querySelectorAll(".delete-button")
+// clog(editTaskButtons)
 
-// Live task editing using "contenteditable" attribute
-editTaskButtons.forEach(i => {
+// Live task editing
+/* editTaskActionButtons.forEach(i => {
     i.addEventListener("click", (e) => {
         let tempTitle = document.querySelector(`#${i.id} .title`)
         let tempDescription = document.querySelector(`#${i.id} .description`)
@@ -65,18 +67,56 @@ editTaskButtons.forEach(i => {
         clog(tempTitle)
         tempTitle.setAttribute("contenteditable", "true")
         tempDescription.setAttribute("contenteditable", "true")
+        tempTitle.click()
         tempTitle.focus()
-        clog(i.id)
-    })
-})
- 
-const deleteActionButtons = document.querySelectorAll(".delete-button")
-deleteActionButtons.forEach(i => {
-    i.addEventListener("click", (e) => {
+        
         clog(i.id) 
-    })
+    })  
+}) */
+
+
+
+taskListContainer.addEventListener("click", (e) => {
+    
+    //clog(i.id)
+    const currentTaskList = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
+    for (let task in currentTaskList){
+        // Logic to delete task item
+        if(e.target.className === "delete-button" && currentTaskList[task].id === e.target.id) {
+            clog("🔔 Delete button pressed!")
+            clog("🔔 Item matched. Now setting isTrashed: true")
+            clog(`Task moved to trash!`)
+            currentTaskList[task].isTrashed = true
+            localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
+            displayTodoItems()
+            //${currentTaskList[task].title}
+        }
+        // Logic to edit task item
+        if ( e.target.className === "edit-button" && currentTaskList[task].id === e.target.id ){
+            clog("🔔 Edit button pressed!")
+            clog("🔔 Item matched. Now opening editing dialog")
+            addNewTodoDialog.showModal()
+            todoTitle.value = currentTaskList[task].title
+            todoDescription.value = currentTaskList[task].description
+            todoTags.value = currentTaskList[task].tags.join(" ")
+            let priorityNum = currentTaskList[task].priority
+            let inputRadio = document.querySelector(`input[value="${priorityNum}"]`)
+            clog(inputRadio.value) 
+            todoPriority.forEach(i => {
+                if( Number(i.value) !== Number(priorityNum) ){i.removeAttribute("checked")}
+                else if (Number(i.value) === Number(priorityNum) ){
+                    clog(i)
+                    i.setAttribute("checked", "priorityNum")
+                }
+            })
+            localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
+            
+            //displayTodoItems() 
+        }
+    }
 })
+
+
 
 /// Action button events end
 
-console.log()

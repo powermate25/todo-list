@@ -20,7 +20,7 @@ setInterval(
 
 /// Preparing container fn start
 
-DisplayTodoItems = function(){
+displayTodoItems = function(){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")
@@ -31,14 +31,16 @@ DisplayTodoItems = function(){
     // Set loop for each item in storage
 for(task in allTaskFromStorage){
     // Loop start
-    clog(allTaskFromStorage[task])
-    currentTask = allTaskFromStorage[task]
-    
+    let currentTask = allTaskFromStorage[task]
+
+    // Filtering out trashed items before proceeding
+    if(currentTask.isTrashed !== true){
+
     // Step2: Defining containers
     const todoItem = document.createElement("div")
     todoItem.className = "todo-item"
     todoItem.id = currentTask.id
-    clog(todoItem)
+    //clog(todoItem)
     const detailsEle = document.createElement("details")
     // detailsEle.setAttribute("open", "")
     const summaryEle = document.createElement("summary")
@@ -130,11 +132,12 @@ for(task in allTaskFromStorage){
 
     todoListContainer.append(todoItem)
 // Loop end
+} 
 }
 }
 
 /// Preparing container fn end
-DisplayTodoItems() 
+displayTodoItems() 
 
 
 /// Daily Note display logic start
@@ -147,3 +150,4 @@ dailyNote.addEventListener( "input", () => {saveNote()} )
 loadNote()
 
 /// Daily Note display logic end
+
