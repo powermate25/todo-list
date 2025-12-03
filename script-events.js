@@ -69,7 +69,7 @@ editTaskButtons.forEach(i => {
         clog(i.id)
     })
 })
-
+ 
 const deleteActionButtons = document.querySelectorAll(".delete-button")
 deleteActionButtons.forEach(i => {
     i.addEventListener("click", (e) => {
