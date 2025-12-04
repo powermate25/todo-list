@@ -1,26 +1,6 @@
-console.log("Working!")
+/// Preparing container & displaying only trash items. Fn start
 
-/// Date Display logic start
-
-const dateDiv = document.querySelector(".date-now")
-const timeDiv = document.querySelector(".time-now")
-
-setInterval(
-    () => {
-        let timeNow = new Date()
-        let currentDate = timeNow.toDateString()  + ", "
-        let currentTime = timeNow.getHours() + ":" + timeNow.getMinutes() + ":" + timeNow.getSeconds()
-        dateDiv.textContent = currentDate
-        timeDiv.textContent = currentTime
-
-   // clog("tick")
-    }, 1000)
-
-/// Date Display logic end
-
-/// Preparing container & displaying task item. Fn start
-
-displayTodoItems = function(){
+displayTrashItems = function(){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")
@@ -34,7 +14,7 @@ for(task in allTaskFromStorage){
     let currentTask = allTaskFromStorage[task]
 
     // Filtering out trashed items before proceeding
-    if(currentTask && currentTask.isTrashed !== true){
+    if(currentTask && currentTask.isTrashed === true){ 
 
     // Step2: Defining containers
     const todoItem = document.createElement("div")
@@ -136,18 +116,4 @@ for(task in allTaskFromStorage){
 }
 }
 
-/// Preparing container & displaying task item. Fn end
-displayTodoItems() 
-
-
-/// Daily Note display logic start
-
-const dailyNote = document.querySelector(".todo-note textarea")
-const localNote = localStorage.getItem("toDoAppFolder2458987545_dailyNote")
-let loadNote = function (){ dailyNote.value = JSON.parse(localNote) }
-let saveNote = function (){ localStorage.setItem( "toDoAppFolder2458987545_dailyNote", ` ${JSON.stringify(dailyNote.value)}` )  }
-dailyNote.addEventListener( "input", () => {saveNote()} ) 
-loadNote()
-
-/// Daily Note display logic end
-
+/// Preparing container & displaying only trash items. Fn end
