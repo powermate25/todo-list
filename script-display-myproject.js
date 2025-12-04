@@ -1,6 +1,6 @@
 /// Preparing container & displaying only myproject items. Fn start
 
-displayTrashItems = function(){
+const displayMyProjectItems = function(){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")
@@ -14,7 +14,7 @@ for(task in allTaskFromStorage){
     let currentTask = allTaskFromStorage[task]
 
     // Filtering out trashed items before proceeding
-    if(currentTask.isTrashed === true){
+    if(currentTask && currentTask.isTrashed !== true && currentTask.group === "My Projects"){
 
     // Step2: Defining containers
     const todoItem = document.createElement("div")

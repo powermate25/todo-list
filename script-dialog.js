@@ -1,7 +1,7 @@
 console.log("Hello!")
 
 // IIFE START
-formatInputToHashtags = (function (){
+const formatInputToHashtags = (function (){
     const todoTags = document.querySelector("input[id=tags]")
     todoTags.addEventListener("input", (e) =>{
 

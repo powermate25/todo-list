@@ -1,6 +1,6 @@
 /// Preparing container & displaying only trash items. Fn start
 
-displayTrashItems = function(){
+const displayTrashItems = function(){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")

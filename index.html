@@ -7,6 +7,7 @@
     <script src="./script-todo.js" defer></script> 
     <script src="./script-dialog.js" defer></script>
     <script src="./script-main-ui.js" defer></script>
+    <script src="./script-display-myproject.js" defer></script> 
     <script src="./script-display-trash.js" defer></script>
     <script src="./script-events.js" defer></script>
     <body>
@@ -21,7 +22,7 @@
             <form id="add-todo" action="#" method="dialog">
                 <p>
                     <label for="title">Title</label>
-                    <input type="text" id="title" name="todo_title" placeholder="Name your task">
+                    <input type="text" id="title" name="todo_title" placeholder="Name your task" autofocus>
                 </p>
                 <p>
                     <label for="description">Description</label>
@@ -156,7 +157,7 @@
                 
                 <div class="todo-note">
                     <div class="note-title">Daily note<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22,2C22,2 14.36,1.63 8.34,9.88C3.72,16.21 2,22 2,22L3.94,21C5.38,18.5 6.13,17.47 7.54,16C10.07,16.74 12.71,16.65 15,14C13,13.44 11.4,13.57 9.04,13.81C11.69,12 13.5,11.6 16,12L17,10C15.2,9.66 14,9.63 12.22,10.04C14.19,8.65 15.56,7.87 18,8L19.21,6.07C17.65,5.96 16.71,6.13 14.92,6.57C16.53,5.11 18,4.45 20.14,4.32C20.14,4.32 21.19,2.43 22,2Z" /></svg></div>
-                    <textarea class="note-details" placeholder="Important or quick note"></textarea>
+                    <textarea class="note-details" id="note-right" placeholder="Important or quick note"></textarea>
                 </div>
 
 <!--SVG Objects-->

@@ -141,29 +141,73 @@ taskListContainer.addEventListener("click", (e) => {
 
 /// Action button events end
 
+// Changing each left panel button's color on click event
+const leftPanelButtons = document.querySelectorAll(".left .button")
+setLeftButtonColor = function (thisButtonId, focusColor){
+    leftPanelButtons.forEach(i => {
+        clog(i.id)
+        if(i.id !== thisButtonId){
+            i.style.backgroundColor = ""
+            i.style.color = ""
+            i.style.fill = ""
+        }
+        else if(i.id === thisButtonId){
+            clog(i.id)
+            i.style.backgroundColor = focusColor
+            i.style.color = "#ffffff"
+            i.style.fill = "#ffffff"
+        }
+    })
+}
+setLeftButtonColor()
 
-/// My projects
+/// My projects button
 const myProjectsBtn = document.querySelector("#my-projects-button")
+myProjectsBtn.addEventListener("click", () => {
+    displayMyProjectItems()
+    setLeftButtonColor("my-projects-button", "#0066ff")
+})
 
-myProjectsBtn.addEventListener("click", ()=>{
+/// All tasks button 
+const allTaskBtn = document.querySelector("#all-tasks-button")
+allTaskBtn.addEventListener("click", () => {
     displayTodoItems()
+    setLeftButtonColor("all-tasks-button", "#0066ff")
+})
+
+
+/// Group button
+const groupButton = document.querySelector("#group-button") 
+groupButton.addEventListener("click", () => {
+    displayMyProjectItems()
+    setLeftButtonColor("group-button", "#0066ff")
 })
 
 
 
-
-/// Trash button events
+/// Trash button
+// const deleteTaskBtn = document.querySelectorAll(".delete-button")
 const trashButton = document.querySelector("#trash-button")
-
-const deleteTaskBtn = document.querySelectorAll(".delete-button")
-
-
 trashButton.addEventListener("click", (e)=>{
     displayTrashItems()
+    setLeftButtonColor("trash-button", "red")
     const editTaskBtn = document.querySelectorAll(".edit-button")
     editTaskBtn.forEach(i => {
         i.disabled = true
-    }) 
+    })
+})
 
+/// Setting button
+const settingButton = document.querySelector("#setting-button") 
+settingButton.addEventListener("click", () => {
+    displayMyProjectItems()
+    setLeftButtonColor("setting-button", "#0066ff")
+})
+
+/// Help button
+const helpButton = document.querySelector("#help-button") 
+helpButton.addEventListener("click", () => {
+    displayMyProjectItems()
+    setLeftButtonColor("help-button", "#0066ff") 
 })
 

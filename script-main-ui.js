@@ -20,7 +20,7 @@ setInterval(
 
 /// Preparing container & displaying task item. Fn start
 
-displayTodoItems = function(){
+const displayTodoItems = function(){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")
