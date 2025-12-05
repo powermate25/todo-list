@@ -36,6 +36,7 @@ for(task in allTaskFromStorage){
     const statusTitleP = document.createElement("p")
     const statusValueP = document.createElement("p")
     statusValueP.className = "status-value"
+    statusValueP.id = currentTask.id
     const separatorDiv = document.createElement("div")
     separatorDiv.className = "separator"
     const priorityDiv = document.createElement("div")
@@ -43,6 +44,7 @@ for(task in allTaskFromStorage){
     const priorityTitleP = document.createElement("p")
     const priorityValueP = document.createElement("p")
     priorityValueP.className = "priority-value"
+    priorityValueP.id = currentTask.id
     const actionDiv = document.createElement("div")
     actionDiv.className = "action"
     const editTaskBtn = document.createElement("button")
@@ -114,6 +116,7 @@ for(task in allTaskFromStorage){
 // Loop end
 } 
 }
+updateTaskColors()
 }
 
 /// Preparing container & displaying only trash items. Fn end

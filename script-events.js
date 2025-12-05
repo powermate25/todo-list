@@ -31,6 +31,7 @@ cancelDialogBtn.addEventListener("click", () =>{
 addNewTodoDialog.addEventListener("close", () => {
     formInsideDialog.reset()
     displayTodoItems()
+    updateTaskColors()
 })
 
 // Getting selected radio button value
@@ -63,22 +64,46 @@ updateTaskBtn.addEventListener("click", () => {
 })
 /// Dialog Events end
 
-/// Action buttons events start
+/// Action buttons logic start
+
 const editTaskActionButtons = document.querySelectorAll(".edit-button")
 const deleteActionButtons = document.querySelectorAll(".delete-button")
-
+// Event delegation start
 taskListContainer.addEventListener("click", (e) => {
     const currentTaskList = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
-    
     for (let task in currentTaskList){
+        // Logic to edit task status
+        if(e.target.className === "status-value" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
+            clog("🔔 Status button pressed!")
+            clog("🔔 Item matched. Now dynamically setting statusCompleted")
+            clog(`Task moved to trash!`)
+            let currentStatus = currentTaskList[task].statusCompleted 
+            currentStatus === true ? currentTaskList[task].statusCompleted = false
+            : currentTaskList[task].statusCompleted = true
+            localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
+            displayTodoItems()
+        }
+        // Logic to edit task priority
+        if(e.target.className === "priority-value" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
+            clog("🔔 Priority button pressed!")
+            clog("🔔 Item matched. Now dynamically setting priority value")
+            clog(`Task moved to trash!`)
+            let currentPriority = Number (currentTaskList[task].priority)
+            if(currentPriority === 0) {currentTaskList[task].priority = 1}
+            else if(currentPriority === 1) {currentTaskList[task].priority = 2}
+            else if(currentPriority === 2) {currentTaskList[task].priority = 0}
+            localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
+            displayTodoItems()
+            //${currentTaskList[task].title}
+        }
         // Logic to trashed task item
-        if(e.target.className === "delete-button" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
+        else if(e.target.className === "delete-button" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
             clog("🔔 Delete button pressed!")
             clog("🔔 Item matched. Now setting isTrashed: true")
-            clog(`Task moved to trash!`)
             currentTaskList[task].isTrashed = true
             localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
             displayTodoItems()
+            clog(`Task moved to trash!`)
             //${currentTaskList[task].title}
         }
         // Logic to delete task item (permanent)
@@ -132,20 +157,19 @@ taskListContainer.addEventListener("click", (e) => {
                 saveNewTaskBtn.style.display = ""
                 
             })
-            
-            
-            //displayTodoItems() 
         }
+        // Update status colors on click event
+        updateTaskColors()
     }
 })
+// Event delegation end
+/// Action buttons logic end
 
-/// Action button events end
-
-// Changing each left panel button's color on click event
+/// Left panel button color update on click event
 const leftPanelButtons = document.querySelectorAll(".left .button")
 setLeftButtonColor = function (thisButtonId, focusColor){
     leftPanelButtons.forEach(i => {
-        clog(i.id)
+        //clog(i.id)
         if(i.id !== thisButtonId){
             i.style.backgroundColor = ""
             i.style.color = ""
@@ -159,7 +183,7 @@ setLeftButtonColor = function (thisButtonId, focusColor){
         }
     })
 }
-setLeftButtonColor()
+//setLeftButtonColor()
 
 /// My projects button
 const myProjectsBtn = document.querySelector("#my-projects-button")
@@ -183,7 +207,12 @@ groupButton.addEventListener("click", () => {
     setLeftButtonColor("group-button", "#0066ff")
 })
 
-
+/// Tags button
+const tagsButton = document.querySelector("#tags-button") 
+tagsButton.addEventListener("click", () => {
+    displayMyProjectItems()
+    setLeftButtonColor("tags-button", "#0066ff")
+})
 
 /// Trash button
 // const deleteTaskBtn = document.querySelectorAll(".delete-button")
@@ -193,7 +222,7 @@ trashButton.addEventListener("click", (e)=>{
     setLeftButtonColor("trash-button", "red")
     const editTaskBtn = document.querySelectorAll(".edit-button")
     editTaskBtn.forEach(i => {
-        i.disabled = true
+        i.disabled = true 
     })
 })
 

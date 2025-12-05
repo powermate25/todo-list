@@ -13,9 +13,8 @@ class Todo {
         this.dueDate = ""
         this.statusCompleted = false
         this.isTrashed = false
-        this.id = "Unique-ToDo-ID_" + crypto.randomUUID()
-        /* let StringifiedTodo = JSON.stringify(this)  
-        localStorage.setItem(`${this.id}`, StringifiedTodo) */
+        //this.id = "Unique-ToDo-ID_" + crypto.randomUUID()
+        this.id = "Unique-ToDo-ID_" + Math.random() * 12345
          
         // Both comments above works but act as single file structure
         // which is not practical for iterating through multiples todo items)

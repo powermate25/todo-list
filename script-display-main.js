@@ -1,22 +1,18 @@
-console.log("Working!")
 
-/// Date Display logic start
+/// Updating task status colors fn start
+updateTaskColors = function(){
+    const allTaskStatusPriority = document.querySelectorAll(".status-value, .priority-value")
+    allTaskStatusPriority.forEach(i => {
+        // clog("🚨 Updating colors...")
+        if(i.textContent === "Completed"){i.style.color = "green"}
+        else if (i.textContent === "Unfinished"){i.style.color = "red"}
+        else if(i.textContent === "Low"){i.style.color = "rebeccapurple"} 
+        else if (i.textContent === "Normal"){i.style.color = "orange"}
+        else if (i.textContent === "High"){i.style.color = "#0066ff"}
+    })
+}
+/// Updating task status colors fn end
 
-const dateDiv = document.querySelector(".date-now")
-const timeDiv = document.querySelector(".time-now")
-
-setInterval(
-    () => {
-        let timeNow = new Date()
-        let currentDate = timeNow.toDateString()  + ", "
-        let currentTime = timeNow.getHours() + ":" + timeNow.getMinutes() + ":" + timeNow.getSeconds()
-        dateDiv.textContent = currentDate
-        timeDiv.textContent = currentTime
-
-   // clog("tick")
-    }, 1000)
-
-/// Date Display logic end
 
 /// Preparing container & displaying task item. Fn start
 
@@ -56,6 +52,7 @@ for(task in allTaskFromStorage){
     const statusTitleP = document.createElement("p")
     const statusValueP = document.createElement("p")
     statusValueP.className = "status-value"
+    statusValueP.id = currentTask.id
     const separatorDiv = document.createElement("div")
     separatorDiv.className = "separator"
     const priorityDiv = document.createElement("div")
@@ -63,6 +60,7 @@ for(task in allTaskFromStorage){
     const priorityTitleP = document.createElement("p")
     const priorityValueP = document.createElement("p")
     priorityValueP.className = "priority-value"
+    priorityValueP.id = currentTask.id
     const actionDiv = document.createElement("div")
     actionDiv.className = "action"
     const editTaskBtn = document.createElement("button")
@@ -75,11 +73,13 @@ for(task in allTaskFromStorage){
     // Preparing action buttons icons
     const editIconImg = document.createElement("img")
     editIconImg.setAttribute("src", "./images/icons/edit.svg")
+    editIconImg.className="edit-button"
     editIconImg.id = currentTask.id
     editIconImg.style.width ="1.3rem"
      
     const deleteIconImg = document.createElement("img")
     deleteIconImg.setAttribute("src", "./images/icons/trash-can.svg")
+    deleteIconImg.className = "delete-button"
     deleteIconImg.id = currentTask.id
     deleteIconImg.style.width ="1.3rem" 
     
@@ -134,20 +134,20 @@ for(task in allTaskFromStorage){
 // Loop end
 } 
 }
+updateTaskColors()
 }
-
 /// Preparing container & displaying task item. Fn end
-displayTodoItems() 
-
 
 /// Daily Note display logic start
 
 const dailyNote = document.querySelector(".todo-note textarea")
 const localNote = localStorage.getItem("toDoAppFolder2458987545_dailyNote")
-let loadNote = function (){ dailyNote.value = JSON.parse(localNote) }
 let saveNote = function (){ localStorage.setItem( "toDoAppFolder2458987545_dailyNote", ` ${JSON.stringify(dailyNote.value)}` )  }
+let loadNote = function (){ dailyNote.value = JSON.parse(localNote) }
 dailyNote.addEventListener( "input", () => {saveNote()} ) 
+/// Daily Note display logic end  
+
+
+/// Initializing above functions
+displayTodoItems()
 loadNote()
-
-/// Daily Note display logic end
-
