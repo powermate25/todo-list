@@ -54,16 +54,28 @@ for(task in allTaskFromStorage){
     deleteTaskBtn.id = currentTask.id
     deleteTaskBtn.className = "delete-button"
 
+    const restoreTaskBtn = document.createElement("button")
+    restoreTaskBtn.id = currentTask.id
+    restoreTaskBtn.className = "restore-button"
+
     // Preparing action buttons icons
     const editIconImg = document.createElement("img")
     editIconImg.setAttribute("src", "./images/icons/edit.svg")
+    editIconImg.className = "edit-button"
     editIconImg.id = currentTask.id
     editIconImg.style.width ="1.3rem"
      
     const deleteIconImg = document.createElement("img")
     deleteIconImg.setAttribute("src", "./images/icons/trash-can.svg")
+    deleteIconImg.className = "delete-button"
     deleteIconImg.id = currentTask.id
     deleteIconImg.style.width ="1.3rem" 
+
+    const restoreIconImg = document.createElement("img")
+    restoreIconImg.setAttribute("src", "./images/icons/restore.svg")
+    restoreIconImg.className = "restore-button"
+    restoreIconImg.id = currentTask.id
+    restoreIconImg.style.width ="1.3rem"
     
     // Done preparing svg object
 
@@ -104,9 +116,12 @@ for(task in allTaskFromStorage){
     priorityDiv.append(priorityValueP)
 
     todoItem.append(actionDiv)
+    actionDiv.append(restoreTaskBtn)
     actionDiv.append(editTaskBtn)
     actionDiv.append(deleteTaskBtn)
 
+    restoreTaskBtn.append(restoreIconImg)
+    restoreTaskBtn.append("Restore")
     editTaskBtn.append(editIconImg)
     editTaskBtn.append("Edit")
     deleteTaskBtn.append(deleteIconImg)

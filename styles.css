@@ -491,6 +491,10 @@ dialog form button:hover {
     align-content: center;
     font-weight: 600;
     /* border: 1px solid green; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
     
     
 }
@@ -526,8 +530,10 @@ dialog form button:hover {
 }
 .overview .status, .overview .priority {
     height: 1rem;
+    width: 7.5rem;
+    
     display: flex;
-    justify-content: start;
+    justify-content: start; 
     align-items: center;
     gap: 0.2rem;
     color: rgb(107, 107, 107);
@@ -603,6 +609,17 @@ dialog form button:hover {
     color: red;
     fill: red; 
     border: 1px solid red;
+}
+
+/* Below to avoid setting border to both button and its svg by specifying only parent button element */
+/* Not needed above since "last of type" already provided same specificity */
+.action button[class=restore-button] {
+    color: green;
+}
+
+.action button[class=restore-button]:hover {
+    color: green;
+    border:1px solid green;
 }
 
 .action svg {

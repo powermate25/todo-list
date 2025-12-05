@@ -66,7 +66,7 @@ updateTaskBtn.addEventListener("click", () => {
 
 /// Action buttons logic start
 
-const editTaskActionButtons = document.querySelectorAll(".edit-button")
+const editTaskActionButtons = document.querySelectorAll(".edit-button") 
 const deleteActionButtons = document.querySelectorAll(".delete-button")
 // Event delegation start
 taskListContainer.addEventListener("click", (e) => {
@@ -112,6 +112,17 @@ taskListContainer.addEventListener("click", (e) => {
             clog("🔔 Item matched trashed item. Now will permanently delete task")
             delete(currentTaskList[task])
             clog(`Trashed item erased!`)
+            clog(currentTaskList)
+            localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
+            displayTrashItems()
+            //${currentTaskList[task].title}
+        }
+        // Logic to restore task item from trash
+        else if(e.target.className === "restore-button" && currentTaskList[task] && currentTaskList[task].isTrashed === true &&  currentTaskList[task].id === e.target.id) {
+            clog("🔔 Restore button pressed!")
+            clog("🔔 Item matched trashed item. Now will restore task")
+            currentTaskList[task].isTrashed = false
+            clog(`🔔 Trashed item restored!`)
             clog(currentTaskList)
             localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
             displayTrashItems()
@@ -223,8 +234,10 @@ trashButton.addEventListener("click", (e)=>{
     const editTaskBtn = document.querySelectorAll(".edit-button")
     editTaskBtn.forEach(i => {
         i.disabled = true 
+        i.style.display = "none"
     })
 })
+
 
 /// Setting button
 const settingButton = document.querySelector("#setting-button") 
