@@ -1,6 +1,12 @@
+import { displayTimeDate } from "./script1-dashboard-ui.js"
+import { Todo } from "./script2-todo.js"
+import { formatInputToHashtags } from "./script3-dialog-input-check.js"
+
+
+const clog = console.log
 
 /// Updating task status colors fn start
-updateTaskColors = function(){
+const updateTaskColors = function(){
     const allTaskStatusPriority = document.querySelectorAll(".status-value, .priority-value")
     allTaskStatusPriority.forEach(i => {
         // clog("🚨 Updating colors...")
@@ -15,17 +21,16 @@ updateTaskColors = function(){
 
 
 /// Preparing container & displaying task item. Fn start
-
 const displayTodoItems = function(){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")
 
     todoListContainer.textContent = ""
-    // Step1: Loading todoList from storage 
-    allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
+    // Step1: Loading todoList from storage
+    const allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
     // Set loop for each item in storage
-for(task in allTaskFromStorage){
+for(let task in allTaskFromStorage){
     // Loop start
     let currentTask = allTaskFromStorage[task]
 
@@ -142,8 +147,8 @@ updateTaskColors()
 
 const dailyNote = document.querySelector(".todo-note textarea")
 const localNote = localStorage.getItem("toDoAppFolder2458987545_dailyNote")
-let saveNote = function (){ localStorage.setItem( "toDoAppFolder2458987545_dailyNote", ` ${JSON.stringify(dailyNote.value)}` )  }
-let loadNote = function (){ dailyNote.value = JSON.parse(localNote) }
+const saveNote = function (){ localStorage.setItem( "toDoAppFolder2458987545_dailyNote", ` ${JSON.stringify(dailyNote.value)}` )  }
+const loadNote = function (){ dailyNote.value = JSON.parse(localNote) }
 dailyNote.addEventListener( "input", () => {saveNote()} ) 
 /// Daily Note display logic end  
 
@@ -151,3 +156,12 @@ dailyNote.addEventListener( "input", () => {saveNote()} )
 /// Initializing above functions
 displayTodoItems()
 loadNote()
+
+
+
+
+/// EXPORTING
+export { updateTaskColors }
+export { displayTodoItems }
+export { saveNote }
+export { loadNote }

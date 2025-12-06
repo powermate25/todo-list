@@ -1,11 +1,11 @@
 console.log("Working!")
-
+const clog = console.log
 /// Date Display logic start
 
 const dateDiv = document.querySelector(".date-now")
 const timeDiv = document.querySelector(".time-now")
 
-setInterval(
+const displayTimeDate = setInterval(
     () => {
         let timeNow = new Date()
         let currentDate = timeNow.toDateString()  + ", "
@@ -16,4 +16,8 @@ setInterval(
    // clog("tick")
     }, 1000)
 
-/// Date Display logic end
+/// Date Display logic end 
+
+
+/// EXPORTING
+export { displayTimeDate }

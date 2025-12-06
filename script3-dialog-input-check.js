@@ -1,5 +1,9 @@
-console.log("Hello!")
+import { displayTimeDate } from "./script1-dashboard-ui.js"
+import { Todo } from "./script2-todo.js"
 
+
+console.log("Hello!")
+const clog = console.log
 // IIFE START
 const formatInputToHashtags = (function (){
     const todoTags = document.querySelector("input[id=tags]")
@@ -47,3 +51,5 @@ const formatInputToHashtags = (function (){
 })()
 //IIFE END
 
+/// EXPORTING
+export { formatInputToHashtags } 

@@ -1,6 +1,19 @@
+import { displayTimeDate } from "./script1-dashboard-ui.js"
+import { Todo } from "./script2-todo.js"
+import { formatInputToHashtags } from "./script3-dialog-input-check.js"
+import { updateTaskColors } from "./script4-display-main.js"
+import { displayTodoItems } from "./script4-display-main.js"
+import { saveNote } from "./script4-display-main.js"
+import { loadNote } from "./script4-display-main.js"
+import { displayMyProjectItems } from "./script5-display-myproject.js"
+import { displayTrashItems } from "./script6-display-trash.js"
+
+
+const clog = console.log
 console.log("Yah!")
 
 /// Dialog Events start
+
 const formInsideDialog = document.querySelector(".add-todo-dialog form") 
 const addNewTodoDialog = document.querySelector(".add-todo-dialog") 
 const addNewTask = document.querySelectorAll(".add-task-button")
@@ -76,7 +89,7 @@ taskListContainer.addEventListener("click", (e) => {
         if(e.target.className === "status-value" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
             clog("🔔 Status button pressed!")
             clog("🔔 Item matched. Now dynamically setting statusCompleted")
-            clog(`Task moved to trash!`)
+            clog(`Task status edited!`)
             let currentStatus = currentTaskList[task].statusCompleted 
             currentStatus === true ? currentTaskList[task].statusCompleted = false
             : currentTaskList[task].statusCompleted = true
@@ -87,7 +100,7 @@ taskListContainer.addEventListener("click", (e) => {
         if(e.target.className === "priority-value" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
             clog("🔔 Priority button pressed!")
             clog("🔔 Item matched. Now dynamically setting priority value")
-            clog(`Task moved to trash!`)
+            clog(`Task priority edited!`)
             let currentPriority = Number (currentTaskList[task].priority)
             if(currentPriority === 0) {currentTaskList[task].priority = 1}
             else if(currentPriority === 1) {currentTaskList[task].priority = 2}
@@ -108,7 +121,7 @@ taskListContainer.addEventListener("click", (e) => {
         }
         // Logic to delete task item (permanent)
         else if(e.target.className === "delete-button" && currentTaskList[task] && currentTaskList[task].isTrashed === true &&  currentTaskList[task].id === e.target.id) {
-            clog("🔔 Delete button pressed!")
+            clog("🔔 Erase button pressed!")
             clog("🔔 Item matched trashed item. Now will permanently delete task")
             delete(currentTaskList[task])
             clog(`Trashed item erased!`)
@@ -178,7 +191,7 @@ taskListContainer.addEventListener("click", (e) => {
 
 /// Left panel button color update on click event
 const leftPanelButtons = document.querySelectorAll(".left .button")
-setLeftButtonColor = function (thisButtonId, focusColor){
+const setLeftButtonColor = function (thisButtonId, focusColor){
     leftPanelButtons.forEach(i => {
         //clog(i.id)
         if(i.id !== thisButtonId){

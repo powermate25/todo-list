@@ -1,4 +1,7 @@
 console.log("Welcome!")
+import { displayTimeDate } from "./script1-dashboard-ui.js"
+
+
 const clog = console.log
 class Todo {
     constructor(title, description, priority, ...tags){
@@ -381,3 +384,6 @@ const todo3 = new Todo("Good Pj", "Stay consistent learning TOP")
 todo1.setTags("tag1", "tag2", "tag3") */
 // todo2.setTags("tag4", "tag5")
 /* clog(new Todo("No Title?") ) */
+
+/// EXPORTING
+export { Todo }

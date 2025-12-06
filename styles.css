@@ -384,6 +384,7 @@ dialog form button:hover {
     gap: 0.6rem;
     background-color: #ffffff;
     fill: #0066ff;
+    cursor: pointer; 
 }
 
 .left .button:hover {

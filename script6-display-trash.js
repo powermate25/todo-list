@@ -1,3 +1,15 @@
+import { displayTimeDate } from "./script1-dashboard-ui.js"
+import { Todo } from "./script2-todo.js"
+import { formatInputToHashtags } from "./script3-dialog-input-check.js"
+import { updateTaskColors } from "./script4-display-main.js"
+import { displayTodoItems } from "./script4-display-main.js"
+import { saveNote } from "./script4-display-main.js"
+import { loadNote } from "./script4-display-main.js"
+import { displayMyProjectItems } from "./script5-display-myproject.js"
+
+
+const clog = console.log
+
 /// Preparing container & displaying only trash items. Fn start
 
 const displayTrashItems = function(){
@@ -7,9 +19,9 @@ const displayTrashItems = function(){
 
     todoListContainer.textContent = ""
     // Step1: Loading todoList from storage 
-    allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
+    const allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
     // Set loop for each item in storage
-for(task in allTaskFromStorage){
+for(let task in allTaskFromStorage){
     // Loop start
     let currentTask = allTaskFromStorage[task]
 
@@ -135,3 +147,7 @@ updateTaskColors()
 }
 
 /// Preparing container & displaying only trash items. Fn end
+
+
+/// EXPORTING
+export { displayTrashItems }
