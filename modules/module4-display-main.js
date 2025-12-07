@@ -66,6 +66,21 @@ for(let task in allTaskFromStorage){
     const priorityValueP = document.createElement("p")
     priorityValueP.className = "priority-value"
     priorityValueP.id = currentTask.id
+    
+    const groupDiv = document.createElement("div")
+    groupDiv.className = "group"
+    const groupTitleP = document.createElement("p")
+    const groupValueP = document.createElement("p")
+    groupValueP.className = "group-value"
+    groupValueP.id = currentTask.id
+
+    const dueDateDiv = document.createElement("div")
+    dueDateDiv.className = "due-date"
+    const dueDateTitleP = document.createElement("p")
+    const dueDateValueP = document.createElement("p")
+    dueDateValueP.className = "due-date-value"
+    dueDateValueP.id = currentTask.id
+
     const actionDiv = document.createElement("div")
     actionDiv.className = "action"
     const editTaskBtn = document.createElement("button")
@@ -100,6 +115,8 @@ for(let task in allTaskFromStorage){
     if (currentTask.priority === 0) {tempPriority = "Low"}
     else if (currentTask.priority === 1) {tempPriority = "Normal"}
     else if (currentTask.priority === 2) {tempPriority = "High"}
+    let tempGroup = currentTask.group
+    let dueDate = currentTask.dueDate
 
     // Appending details to corresponding divs
     summaryEle.textContent = tempTitle
@@ -108,6 +125,10 @@ for(let task in allTaskFromStorage){
     statusValueP.textContent = tempStatus
     priorityTitleP.textContent = "Priority"
     priorityValueP.textContent = tempPriority
+    groupTitleP.textContent = "📁"
+    groupValueP.textContent = tempGroup
+    dueDateTitleP.textContent = "⏰"
+    dueDateValueP.textContent = dueDate
 
 
     // Appending children to parent Divs
@@ -125,6 +146,18 @@ for(let task in allTaskFromStorage){
     overviewDiv.append(priorityDiv)
     priorityDiv.append(priorityTitleP)
     priorityDiv.append(priorityValueP)
+
+    overviewDiv.append(separatorDiv)
+
+    overviewDiv.append(groupDiv)
+    groupDiv.append(groupTitleP)
+    groupDiv.append(groupValueP)
+
+    overviewDiv.append(separatorDiv)
+
+    overviewDiv.append(dueDateDiv)
+    dueDateDiv.append(dueDateTitleP)
+    dueDateDiv.append(dueDateValueP)
 
     todoItem.append(actionDiv)
     actionDiv.append(editTaskBtn)

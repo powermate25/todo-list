@@ -7,7 +7,7 @@
     <script src="./modules/module-main-events.js" type="module" defer></script>
     <body>
 
-        <dialog class="add-todo-dialog" closedby="closerequest">  
+        <dialog class="add-todo-dialog" closedby="closerequest" open >  
             <div class="dialog-heading"> 
                 <button class="cancel-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
                  Go back</button>
@@ -44,6 +44,19 @@
                             </div>
                         </div>
                 </div>
+                
+                    <div class="task-group">
+                        <p>Group</p>
+                        <label for="group">
+                            <select id="group" name="group">
+                                <option value="default" selected>Default</option>
+                                <option value="blue">Blue</option>
+                                <!-- <option value="yellow">Yellow</option>
+                                <option value="red">Red</option> -->
+                            </select>
+                        </label>  
+                    </div>
+                
                 <!-- <div class="task-color">
                     <label for="color">Color
                         <select id="color" name="color">

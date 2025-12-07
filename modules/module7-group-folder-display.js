@@ -29,12 +29,14 @@ const displayGroupFolders = function(){
             clog("🔔 Unfiltered groups below: ")
             clog(taskGroupArray)
         }
-    }
-        let UniqueGroupSet = [...new Set(taskGroupArray)]
-        clog("🔔 Unified groups below: ")
-        clog(UniqueGroupSet)
+    }   
+        let taskGroupArrayLow = taskGroupArray.map(i => i.toLowerCase() )
+        let UniqueGroupSet = [...new Set(taskGroupArrayLow)]
+        
+        clog("🔔 Unified groups to lowercases below: ")
+        clog( UniqueGroupSet  )
+        
     for(let group in UniqueGroupSet){
-        clog(taskGroupArray[group])
         let uniqueGroupName = UniqueGroupSet[group]
         // Step2: Defining containers
         const taskGroupItem = document.createElement("button")

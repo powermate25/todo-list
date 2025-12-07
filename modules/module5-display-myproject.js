@@ -25,7 +25,7 @@ for(let task in allTaskFromStorage){
     let currentTask = allTaskFromStorage[task]
 
     // Filtering out trashed items before proceeding
-    if(currentTask && currentTask.isTrashed !== true && currentTask.group === "My Projects"){
+    if(currentTask && currentTask.isTrashed !== true && currentTask.group.toLowerCase() === "my projects"){
 
     // Step2: Defining containers
     const todoItem = document.createElement("div")

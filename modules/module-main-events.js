@@ -23,9 +23,48 @@ const todoTitle = document.querySelector("input[id=title]")
 const todoDescription = document.querySelector("textarea[id=description]")
 const todoTags = document.querySelector("input[id=tags]")
 const todoPriority = document.querySelectorAll("input[name=todo_priority]")
+//const todoGroup = document.querySelectorAll(".task-group option")
 const saveNewTaskBtn = document.querySelector("dialog form .save-task-button")
 const updateTaskBtn = document.querySelector("dialog form .update-task-button")
 const taskListContainer = document.querySelector(".task-list-container")
+
+
+// Fetching current task groups and populating dialog group options
+
+
+
+const populateDialogGroupOption = function (){
+    
+    // Filtering duplicate first
+    const currentTaskList = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
+    let UnfilteredGrpFolder = []
+    let filteredGrpFolder = []
+    for (let task in currentTaskList ){
+        let currentTask = currentTaskList[task]
+        if(currentTask && currentTask.isTrashed !== true && currentTask.group){
+        clog(currentTask.group)
+        
+        UnfilteredGrpFolder.push(`${currentTask.group}`)
+        }
+    }   let UnfilteredGrpToLow = UnfilteredGrpFolder.map(i => i.toLowerCase() )
+        filteredGrpFolder = [...new Set(UnfilteredGrpToLow)]
+        clog("🔔 Unfiltered groups")
+        clog(UnfilteredGrpToLow)
+        clog("🔔 Filtered group: ")
+        clog(filteredGrpFolder)
+    // Done filtering. Now populating dialog group options with filteredGrpFolder
+    const dialogGroupSelectDiv = document.querySelector(".task-group select[name=group]")
+    dialogGroupSelectDiv.textContent = ""
+    for (let group in filteredGrpFolder ) {
+        clog(filteredGrpFolder[group])   
+        clog(dialogGroupSelectDiv)
+        const NewGrpOption = document.createElement("option")
+        NewGrpOption.textContent = `${filteredGrpFolder[group].toUpperCase()}` 
+        dialogGroupSelectDiv.append(NewGrpOption)
+    }
+    UnfilteredGrpFolder = []
+}
+
 
 // Opening dialog
 addNewTask.forEach(i =>{
@@ -33,6 +72,8 @@ addNewTask.forEach(i =>{
     // Hiding UPDATE button (Only displaying SAVE button for this "Add" session)
     updateTaskBtn.style.display = "none"
     saveNewTaskBtn.style.display = ""
+   // UnfilteredGrpFolder = []
+    populateDialogGroupOption()
     addNewTodoDialog.showModal() })
 })
 
@@ -43,6 +84,7 @@ cancelDialogBtn.addEventListener("click", () =>{
 
 // Update display on dialog close event
 addNewTodoDialog.addEventListener("close", () => {
+   // UnfilteredGrpFolder = []
     formInsideDialog.reset()
     displayTodoItems()
     updateTaskColors()
@@ -59,6 +101,25 @@ const getRadioPriority = function (){
     })
 }
 
+// Getting selected group name
+
+let groupSelected
+const getSelectedGroup = function (){
+    const todoGroup = document.querySelectorAll(".task-group option")
+    todoGroup.forEach(i => {
+        clog(" TodoGroup i: ")
+        clog(i)
+       // clog(i.selected)
+        if ( i && i.selected === true){
+        clog(i.textContent.toLocaleLowerCase())
+        console.log("🔔 Selected group is: " + i.textContent)
+        return groupSelected = i.textContent.toLocaleLowerCase()
+        }
+    })
+}
+
+
+
 // Confirm adding task dialog
 saveNewTaskBtn.addEventListener("click", () =>{
     let title = todoTitle.value
@@ -68,7 +129,12 @@ saveNewTaskBtn.addEventListener("click", () =>{
     let tags = todoTags.value
     let arrFromTags = tags.split(" ")
     let filteredArrFromTags = arrFromTags.map( i => `${i}` )
-    new Todo(title, description, priorityValue, ...filteredArrFromTags)
+    getSelectedGroup()
+    console.log("📣 " + groupSelected)
+    //formatting first letter to uppercase for all folders
+    let groupStr = groupSelected
+    let groupStrToWellFormatted = groupStr.charAt(0).toUpperCase() + groupStr.slice(1).toLowerCase()
+    new Todo(title, description, priorityValue, groupStrToWellFormatted, "Due soon", ...filteredArrFromTags)
     addNewTodoDialog.close()
 })
 
@@ -86,7 +152,7 @@ const deleteActionButtons = document.querySelectorAll(".delete-button")
 taskListContainer.addEventListener("click", (e) => {
     const currentTaskList = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
     for (let task in currentTaskList){
-        // Logic to edit task status
+        // Logic to edit task status (button)
         if(e.target.className === "status-value" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
             clog("🔔 Status button pressed!")
             clog("🔔 Item matched. Now dynamically setting statusCompleted")
@@ -97,7 +163,7 @@ taskListContainer.addEventListener("click", (e) => {
             localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
             displayTodoItems()
         }
-        // Logic to edit task priority
+        // Logic to edit task priority (button)
         if(e.target.className === "priority-value" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
             clog("🔔 Priority button pressed!")
             clog("🔔 Item matched. Now dynamically setting priority value")
@@ -110,7 +176,8 @@ taskListContainer.addEventListener("click", (e) => {
             displayTodoItems()
             //${currentTaskList[task].title}
         }
-        // Logic to trashed task item
+        
+        // Logic to trashed task item (button)
         else if(e.target.className === "delete-button" && currentTaskList[task] && currentTaskList[task].isTrashed !== true && currentTaskList[task].id === e.target.id) {
             clog("🔔 Delete button pressed!")
             clog("🔔 Item matched. Now setting isTrashed: true")
@@ -120,7 +187,7 @@ taskListContainer.addEventListener("click", (e) => {
             clog(`Task moved to trash!`)
             //${currentTaskList[task].title}
         }
-        // Logic to delete task item (permanent)
+        // Logic to delete task item (permanent) (button)
         else if(e.target.className === "delete-button" && currentTaskList[task] && currentTaskList[task].isTrashed === true &&  currentTaskList[task].id === e.target.id) {
             clog("🔔 Erase button pressed!")
             clog("🔔 Item matched trashed item. Now will permanently delete task")
@@ -131,7 +198,7 @@ taskListContainer.addEventListener("click", (e) => {
             displayTrashItems()
             //${currentTaskList[task].title}
         }
-        // Logic to restore task item from trash
+        // Logic to restore task item from trash (button)
         else if(e.target.className === "restore-button" && currentTaskList[task] && currentTaskList[task].isTrashed === true &&  currentTaskList[task].id === e.target.id) {
             clog("🔔 Restore button pressed!")
             clog("🔔 Item matched trashed item. Now will restore task")
@@ -142,14 +209,18 @@ taskListContainer.addEventListener("click", (e) => {
             displayTrashItems()
             //${currentTaskList[task].title}
         }
-        // Logic to edit task item
+        // Logic to edit task item via (main dialog)
         else if ( e.target.className === "edit-button" && currentTaskList[task] && currentTaskList[task].id === e.target.id ){
             // Hiding SAVE button (Only displaying UPDATE button for this "Update" session)
             saveNewTaskBtn.style.display = "none"
             updateTaskBtn.style.display = ""
             clog("🔔 Edit button pressed!")
             clog("🔔 Item matched. Now opening editing dialog")
+            populateDialogGroupOption()
             addNewTodoDialog.showModal()
+            // Reloading field values from current task and auto-filling dialog inputs
+            //Also populating dialog group option with current group
+
             todoTitle.value = currentTaskList[task].title
             todoDescription.value = currentTaskList[task].description
             clog(currentTaskList[task].tags)
@@ -161,20 +232,41 @@ taskListContainer.addEventListener("click", (e) => {
                 if( Number(i.value) !== Number(priorityNum) ){i.removeAttribute("checked")}
                 else if (Number(i.value) === Number(priorityNum) ){
                     clog(i)
-                    i.setAttribute("checked", "priorityNum")
+                    i.setAttribute("checked", "")
                 }
             })
+            
+            
+            let groupSelector = document.querySelectorAll(".task-group option")
+            let taskGroup
+            groupSelector.forEach(i => {
+                if(currentTaskList[task].group){taskGroup = currentTaskList[task].group.toLowerCase()}
+                else {taskGroup = "none"}
+                // clog(i)
+                if (i && i.value.toLowerCase() !== taskGroup){ i.removeAttribute("selected") }
+                else if (i.value.toLowerCase() === taskGroup){
+                    i.setAttribute("selected", "")
+                    clog(i)
+                }
+            })
+            // Done Reloading field values from current task and auto-filling dialog inputs
+
             updateTaskBtn.addEventListener("click", () =>{
-                clog("Update Button is working!")
+                clog("Update Button is clicked!")
+                
                 currentTaskList[task].title = todoTitle.value
                 currentTaskList[task].description = todoDescription.value
                 let tags = todoTags.value
                 let arrFromTags = tags.split(" ")
-                filteredArrFromTags = arrFromTags.map( i => `${i}` )
+                let filteredArrFromTags = arrFromTags.map( i => `${i}` )
                 currentTaskList[task].tags = []
                 currentTaskList[task].tags.push(...filteredArrFromTags)
                 getRadioPriority()
                 currentTaskList[task].priority = priorityValue
+                getSelectedGroup()
+                let groupStr = groupSelected
+                let groupStrToWellFormatted = groupStr.charAt(0).toUpperCase() + groupStr.slice(1).toLowerCase()
+                currentTaskList[task].group = groupStrToWellFormatted
                 localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
                 addNewTodoDialog.close()
                 displayTodoItems()
@@ -183,7 +275,7 @@ taskListContainer.addEventListener("click", (e) => {
                 
             })
         }
-        // Update status colors on click event
+        // Update status colors on click event before leaving
         updateTaskColors()
     }
 })
@@ -268,7 +360,7 @@ helpButton.addEventListener("click", () => {
 })
 
 
-/// Group folder button click event
+/// Group folder item button click event
 
 const taskGroupContainer = document.querySelector(".todo-list-container") 
 taskGroupContainer.addEventListener("click", (e) => {
@@ -277,7 +369,7 @@ taskGroupContainer.addEventListener("click", (e) => {
     for (let task in allTaskFromStorage){
         clog(clickedGroupNameLow) 
         let thisTask = allTaskFromStorage[task]
-        if(thisTask && thisTask.group.toLowerCase() === clickedGroupNameLow ){
+        if(thisTask && thisTask.group && thisTask.group.toLowerCase() === clickedGroupNameLow ){
         clog( "Yeah Folder found: " + allTaskFromStorage[task].group )
         clog("🔔 Now displaying task filtered by selected group")
         clog(clickedGroupNameLow)

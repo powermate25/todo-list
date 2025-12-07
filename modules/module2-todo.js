@@ -4,16 +4,16 @@ import { displayTimeDate } from "./module1-dashboard-ui.js"
 
 const clog = console.log
 class Todo {
-    constructor(title, description, priority, ...tags){
+    constructor(title, description, priority, group, dueDate, ...tags){
         this.title = title
         this.description = description
-        this.group = "My Projects"
+        this.group = group
         this.priority = priority
         this.color = "default"
         this.tags = [...tags]
         this.note = ""
         this.creationDate = new Date()
-        this.dueDate = ""
+        this.dueDate = dueDate
         this.statusCompleted = false
         this.isTrashed = false
         //this.id = "Unique-ToDo-ID_" + crypto.randomUUID()
