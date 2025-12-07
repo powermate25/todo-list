@@ -1,17 +1,18 @@
-import { displayTimeDate } from "./script1-dashboard-ui.js"
-import { Todo } from "./script2-todo.js"
-import { formatInputToHashtags } from "./script3-dialog-input-check.js"
-import { updateTaskColors } from "./script4-display-main.js"
-import { displayTodoItems } from "./script4-display-main.js"
-import { saveNote } from "./script4-display-main.js"
-import { loadNote } from "./script4-display-main.js"
-
-
+import { displayTimeDate } from "./module1-dashboard-ui.js"
+import { Todo } from "./module2-todo.js"
+import { formatInputToHashtags } from "./module3-dialog-input-check.js"
+import { updateTaskColors } from "./module4-display-main.js"
+import { displayTodoItems } from "./module4-display-main.js"
+import { saveNote } from "./module4-display-main.js"
+import { loadNote } from "./module4-display-main.js"
+import { displayMyProjectItems } from "./module5-display-myproject.js"
+import { displayTrashItems } from "./module6-display-trash.js"
+import { displayGroupFolders } from "./module7-group-folder-display.js"
 const clog = console.log
 
 /// Preparing container & displaying only myproject items. Fn start
 
-const displayMyProjectItems = function(){
+const displayGroupItems = function(groupNameLowerCase){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")
@@ -24,8 +25,8 @@ for(let task in allTaskFromStorage){
     // Loop start
     let currentTask = allTaskFromStorage[task]
 
-    // Filtering out trashed items before proceeding
-    if(currentTask && currentTask.isTrashed !== true && currentTask.group === "My Projects"){
+    // Filtering out group items before proceeding
+    if(currentTask && currentTask.isTrashed !== true && currentTask.group.toLowerCase() === groupNameLowerCase){
 
     // Step2: Defining containers
     const todoItem = document.createElement("div")
@@ -133,4 +134,4 @@ updateTaskColors()
 /// Preparing container & displaying only trash items. Fn end
 
 /// EXPORTING
-export { displayMyProjectItems }
+export { displayGroupItems }

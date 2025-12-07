@@ -1,33 +1,23 @@
-import { displayTimeDate } from "./script1-dashboard-ui.js"
-import { Todo } from "./script2-todo.js"
-import { formatInputToHashtags } from "./script3-dialog-input-check.js"
+import { displayTimeDate } from "./module1-dashboard-ui.js"
+import { Todo } from "./module2-todo.js"
+import { formatInputToHashtags } from "./module3-dialog-input-check.js"
+import { updateTaskColors } from "./module4-display-main.js"
+import { displayTodoItems } from "./module4-display-main.js"
+import { saveNote } from "./module4-display-main.js"
+import { loadNote } from "./module4-display-main.js"
 
 
 const clog = console.log
 
-/// Updating task status colors fn start
-const updateTaskColors = function(){
-    const allTaskStatusPriority = document.querySelectorAll(".status-value, .priority-value")
-    allTaskStatusPriority.forEach(i => {
-        // clog("🚨 Updating colors...")
-        if(i.textContent === "Completed"){i.style.color = "green"}
-        else if (i.textContent === "Unfinished"){i.style.color = "red"}
-        else if(i.textContent === "Low"){i.style.color = "rebeccapurple"} 
-        else if (i.textContent === "Normal"){i.style.color = "orange"}
-        else if (i.textContent === "High"){i.style.color = "#0066ff"}
-    })
-}
-/// Updating task status colors fn end
+/// Preparing container & displaying only myproject items. Fn start
 
-
-/// Preparing container & displaying task item. Fn start
-const displayTodoItems = function(){
+const displayMyProjectItems = function(){
     const todoListContainer = document.querySelector(".task-list-container")
     const editTaskBtn = document.querySelector(".edit-button")
     const deleteTaskBtn = document.querySelector(".delete-button")
 
     todoListContainer.textContent = ""
-    // Step1: Loading todoList from storage
+    // Step1: Loading todoList from storage 
     const allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
     // Set loop for each item in storage
 for(let task in allTaskFromStorage){
@@ -35,7 +25,7 @@ for(let task in allTaskFromStorage){
     let currentTask = allTaskFromStorage[task]
 
     // Filtering out trashed items before proceeding
-    if(currentTask && currentTask.isTrashed !== true){
+    if(currentTask && currentTask.isTrashed !== true && currentTask.group === "My Projects"){
 
     // Step2: Defining containers
     const todoItem = document.createElement("div")
@@ -78,13 +68,11 @@ for(let task in allTaskFromStorage){
     // Preparing action buttons icons
     const editIconImg = document.createElement("img")
     editIconImg.setAttribute("src", "./images/icons/edit.svg")
-    editIconImg.className="edit-button"
     editIconImg.id = currentTask.id
     editIconImg.style.width ="1.3rem"
      
     const deleteIconImg = document.createElement("img")
     deleteIconImg.setAttribute("src", "./images/icons/trash-can.svg")
-    deleteIconImg.className = "delete-button"
     deleteIconImg.id = currentTask.id
     deleteIconImg.style.width ="1.3rem" 
     
@@ -137,31 +125,12 @@ for(let task in allTaskFromStorage){
 
     todoListContainer.append(todoItem)
 // Loop end
-} 
+}
 }
 updateTaskColors()
 }
-/// Preparing container & displaying task item. Fn end
 
-/// Daily Note display logic start
-
-const dailyNote = document.querySelector(".todo-note textarea")
-const localNote = localStorage.getItem("toDoAppFolder2458987545_dailyNote")
-const saveNote = function (){ localStorage.setItem( "toDoAppFolder2458987545_dailyNote", ` ${JSON.stringify(dailyNote.value)}` )  }
-const loadNote = function (){ dailyNote.value = JSON.parse(localNote) }
-dailyNote.addEventListener( "input", () => {saveNote()} ) 
-/// Daily Note display logic end  
-
-
-/// Initializing above functions
-displayTodoItems()
-loadNote()
-
-
-
+/// Preparing container & displaying only trash items. Fn end
 
 /// EXPORTING
-export { updateTaskColors }
-export { displayTodoItems }
-export { saveNote }
-export { loadNote }
+export { displayMyProjectItems }

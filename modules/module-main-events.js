@@ -1,13 +1,14 @@
-import { displayTimeDate } from "./script1-dashboard-ui.js"
-import { Todo } from "./script2-todo.js"
-import { formatInputToHashtags } from "./script3-dialog-input-check.js"
-import { updateTaskColors } from "./script4-display-main.js"
-import { displayTodoItems } from "./script4-display-main.js"
-import { saveNote } from "./script4-display-main.js"
-import { loadNote } from "./script4-display-main.js"
-import { displayMyProjectItems } from "./script5-display-myproject.js"
-import { displayTrashItems } from "./script6-display-trash.js"
-
+import { displayTimeDate } from "./module1-dashboard-ui.js"
+import { Todo } from "./module2-todo.js"
+import { formatInputToHashtags } from "./module3-dialog-input-check.js"
+import { updateTaskColors } from "./module4-display-main.js"
+import { displayTodoItems } from "./module4-display-main.js"
+import { saveNote } from "./module4-display-main.js"
+import { loadNote } from "./module4-display-main.js"
+import { displayMyProjectItems } from "./module5-display-myproject.js"
+import { displayTrashItems } from "./module6-display-trash.js"
+import { displayGroupFolders } from "./module7-group-folder-display.js"
+import { displayGroupItems } from "./module8-display-group-items.js"
 
 const clog = console.log
 console.log("Yah!")
@@ -66,7 +67,7 @@ saveNewTaskBtn.addEventListener("click", () =>{
     console.log("📣 " + priorityValue)
     let tags = todoTags.value
     let arrFromTags = tags.split(" ")
-    filteredArrFromTags = arrFromTags.map( i => `${i}` )
+    let filteredArrFromTags = arrFromTags.map( i => `${i}` )
     new Todo(title, description, priorityValue, ...filteredArrFromTags)
     addNewTodoDialog.close()
 })
@@ -227,7 +228,7 @@ allTaskBtn.addEventListener("click", () => {
 /// Group button
 const groupButton = document.querySelector("#group-button") 
 groupButton.addEventListener("click", () => {
-    displayMyProjectItems()
+    displayGroupFolders()
     setLeftButtonColor("group-button", "#0066ff")
 })
 
@@ -265,4 +266,28 @@ helpButton.addEventListener("click", () => {
     displayMyProjectItems()
     setLeftButtonColor("help-button", "#0066ff") 
 })
+
+
+/// Group folder button click event
+
+const taskGroupContainer = document.querySelector(".todo-list-container") 
+taskGroupContainer.addEventListener("click", (e) => {
+    const allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
+    let clickedGroupNameLow = e.target.textContent.toLowerCase()
+    for (let task in allTaskFromStorage){
+        clog(clickedGroupNameLow) 
+        let thisTask = allTaskFromStorage[task]
+        if(thisTask && thisTask.group.toLowerCase() === clickedGroupNameLow ){
+        clog( "Yeah Folder found: " + allTaskFromStorage[task].group )
+        clog("🔔 Now displaying task filtered by selected group")
+        clog(clickedGroupNameLow)
+        displayGroupItems(clickedGroupNameLow)
+        }
+    
+    } 
+    
+    
+    setLeftButtonColor("group-button", "#0066ff") 
+})
+ 
 

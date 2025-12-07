@@ -1,5 +1,5 @@
-import { displayTimeDate } from "./script1-dashboard-ui.js"
-import { Todo } from "./script2-todo.js"
+import { displayTimeDate } from "./module1-dashboard-ui.js"
+import { Todo } from "./module2-todo.js"
 
 
 console.log("Hello!")

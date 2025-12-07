@@ -1,5 +1,5 @@
 console.log("Welcome!")
-import { displayTimeDate } from "./script1-dashboard-ui.js"
+import { displayTimeDate } from "./module1-dashboard-ui.js"
 
 
 const clog = console.log
