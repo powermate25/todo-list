@@ -180,7 +180,6 @@ dialog form button:hover {
 } */
 
 #top-header {
-    /* border: 1px solid green; */
     grid-column: 1 / 13;
     grid-row: 1 / 2; 
     padding: 0 1rem;
@@ -190,6 +189,7 @@ dialog form button:hover {
     border-color: oklch(70.3% 5% 259.815 / 0.3);
     box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
     /* border: 1px solid red; */
+    height: 6rem;
 }
 
 
@@ -351,7 +351,6 @@ dialog form button:hover {
 }
 
 #left-panel {
-    
     grid-column: 1 / 4;
     grid-row: 2 / 3 ;
     background-color: #ffffff;
@@ -366,6 +365,7 @@ dialog form button:hover {
     margin: 1rem 2rem; 
     gap: 4rem;  
     /* border: 2px solid red; */
+   
 }
 
 .left .button {
@@ -674,3 +674,28 @@ dialog form button:hover {
     outline: none;
     box-shadow: 1px 2px 0px 1px oklch(50.3% 1% 259.815 / 0.4);
 } 
+
+/* Group container & items design */
+
+.todo-list-container {
+    /* border: 1px solid red; */
+}
+
+.group-container {
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 6rem); 
+    grid-auto-rows: 6rem;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.group-container button {
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 80%;
+    font-weight: 900;
+    /* border: 4px solid #0066ff;  */
+    background: linear-gradient(-10deg, #0f2027, #203a43, #2c5364);
+    cursor: pointer;
+}
