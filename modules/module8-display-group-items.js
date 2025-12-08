@@ -132,7 +132,7 @@ for(let task in allTaskFromStorage){
     statusDiv.append(statusTitleP)
     statusDiv.append(statusValueP)
 
-    overviewDiv.append(separatorDiv)
+    // overviewDiv.append(separatorDiv)
 
     overviewDiv.append(priorityDiv)
     priorityDiv.append(priorityTitleP)
