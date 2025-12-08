@@ -5,7 +5,7 @@ body {
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 /* dialog Styling */
@@ -15,7 +15,9 @@ dialog {
     border-radius: 8px;
     border-color: oklch(70.3% 5% 259.815 / 0.3);
     border-width: 1px;
-    box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);
+    box-shadow: 1px 2px 4px 1px oklch(80.3% 1% 259.815 / 0.4);  
+     scrollbar-color: #0066ff #ffffff;
+     scrollbar-width: thin; 
 }
 
 dialog .dialog-heading {
@@ -70,7 +72,10 @@ dialog form {
     display: flex;
     flex-direction: column;
     width: 90%;
+    
 }
+
+
 
 ::backdrop {
     backdrop-filter: blur(5px);
@@ -88,7 +93,7 @@ form input {
     height: 2rem; 
 }
 
-form input[type="text"], form textarea, form .task-color, .priority-container  {
+form input[type="text"], form input[list="group-list"], form textarea, form .task-color, .priority-container  {
     border-width: 1px;
     border-color: oklch(70.3% 5% 259.815 / 0.3);  
     border-radius: 6px;  
@@ -102,12 +107,22 @@ form textarea {
     padding-top: 0.4rem;
 }
 
-form input[type="text"]:focus, form textarea:focus, form .task-color:focus {
+form input[type="text"]:focus, form input[list="group-list"]:focus, form textarea:focus, form .task-color:focus {
     border-color: oklch(62.3% 90% 259.815);
     border-width: 3px;
     border-left: 12px solid oklch(62.3% 0.214 259.815);
     outline: none;
     box-shadow: 3px 4px 6px oklch(80.3% 1% 259.815 / 0.6)
+}
+
+form input[list="group-list"] {
+    width: 100%;
+    height: 2rem;
+    font-family: inherit;
+    padding: 0 0.4rem;
+    color: #0066ff;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .priority-box-title {
@@ -550,8 +565,8 @@ dialog form button:hover {
 
 }
 .overview .status, .overview .priority, .overview .group, .overview .due-date {
-    height: 1rem;
-    min-width: 8rem;
+    height: 1.3rem;
+    /* min-width: 8rem; */
     /* border: 1px solid red; */
     display: flex;
     justify-content: start; 
@@ -561,16 +576,40 @@ dialog form button:hover {
     font-weight: 600;
     font-size: 0.8rem;
     color: rgb(107, 107, 107);
+    
 }
 
-.overview .group, .overview .due-date {
-    min-width: fit-content;
-    max-width: 10rem;
-    /* min-width: calc(8rem); */
+.overview img { 
+    /* border: 1px solid blue; */
+    display: flex;
+    align-content: center;
+}
+
+.overview .status {
+    width: 8rem;
+    
+}
+
+.overview .priority {
+    width: 6.8rem;
+    
+}
+.overview .group {
+    width: 6.4rem;
+    padding: 0 0.4rem 0 0;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
     /* border: 1px solid red; */
+
+}
+
+.overview .due-date {
+    max-width: 16.8rem;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    /* border: 1px solid red; */
     
 }
 
@@ -582,6 +621,7 @@ dialog form button:hover {
 .overview .priority p:nth-of-type(2) {
     color: #0066ff;
     cursor: pointer;
+    /* border: 1px solid green; */
 }
 
 .overview .group p:nth-of-type(2) {
@@ -751,4 +791,8 @@ dialog form button:hover {
     /* border: 4px solid #0066ff;  */
     background: linear-gradient(-10deg, #0f2027, #203a43, #2c5364);
     cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: clip;
+    white-space: wrap;
 }

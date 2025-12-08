@@ -28,6 +28,8 @@ const saveNewTaskBtn = document.querySelector("dialog form .save-task-button")
 const updateTaskBtn = document.querySelector("dialog form .update-task-button")
 const taskListContainer = document.querySelector(".task-list-container")
 
+const taskGroupDataInput = document.querySelector("#group-input")
+clog(taskGroupDataInput)
 
 // Fetching current task groups and populating dialog group options
 
@@ -53,7 +55,8 @@ const populateDialogGroupOption = function (){
         clog("🔔 Filtered group: ")
         clog(filteredGrpFolder)
     // Done filtering. Now populating dialog group options with filteredGrpFolder
-    const dialogGroupSelectDiv = document.querySelector(".task-group select[name=group]")
+    // const dialogGroupSelectDiv = document.querySelector(".task-group select[name=group]")
+    const dialogGroupSelectDiv = document.querySelector(".task-group datalist[id=group-list]") 
     dialogGroupSelectDiv.textContent = ""
     for (let group in filteredGrpFolder ) {
         clog(filteredGrpFolder[group])   
@@ -104,8 +107,8 @@ const getRadioPriority = function (){
 // Getting selected group name
 
 let groupSelected
-const getSelectedGroup = function (){
-    const todoGroup = document.querySelectorAll(".task-group option")
+const getSelectedGroupOld = function (){
+    // const todoGroup = document.querySelectorAll(".task-group option")
     todoGroup.forEach(i => {
         clog(" TodoGroup i: ")
         clog(i)
@@ -118,6 +121,14 @@ const getSelectedGroup = function (){
     })
 }
 
+const getSelectedGroup = function (){
+    const taskGroupInput = document.querySelector(".task-group input[id=group-input]")
+    if (taskGroupInput !== ""){
+    return groupSelected = taskGroupInput.value}
+    else {groupSelected = "My projects"}
+}
+
+clog(getSelectedGroup())
 
 
 // Confirm adding task dialog
@@ -134,7 +145,7 @@ saveNewTaskBtn.addEventListener("click", () =>{
     //formatting first letter to uppercase for all folders
     let groupStr = groupSelected
     let groupStrToWellFormatted = groupStr.charAt(0).toUpperCase() + groupStr.slice(1).toLowerCase()
-    new Todo(title, description, priorityValue, groupStrToWellFormatted, "Due soon", ...filteredArrFromTags)
+    new Todo(title, description, priorityValue, groupStrToWellFormatted, "Untracked", ...filteredArrFromTags)
     addNewTodoDialog.close()
 })
 
@@ -249,6 +260,8 @@ taskListContainer.addEventListener("click", (e) => {
                     clog(i)
                 }
             })
+            
+            taskGroupDataInput.value = currentTaskList[task].group
             // Done Reloading field values from current task and auto-filling dialog inputs
 
             updateTaskBtn.addEventListener("click", () =>{
@@ -327,7 +340,7 @@ groupButton.addEventListener("click", () => {
 /// Tags button
 const tagsButton = document.querySelector("#tags-button") 
 tagsButton.addEventListener("click", () => {
-    displayMyProjectItems()
+    displayTodoItems()
     setLeftButtonColor("tags-button", "#0066ff")
 })
 
