@@ -355,20 +355,39 @@ trashButton.addEventListener("click", (e)=>{
         i.disabled = true 
         i.style.display = "none"
     })
+    disableBtnInTrash()
+    
 })
+
+// disabling edits in trash
+const disableBtnInTrash = function (){
+    let trashButtonSelected = document.querySelector("#trash-button")
+    if(trashButtonSelected.style.color !== ""){
+        clog("🔔 Ready")
+    const btnToDisableInTrash = document.querySelectorAll(".priority-value, .statue-value, .group-value, .due-date-value")
+    btnToDisableInTrash.forEach(i => {
+        i.addEventListener("click", (e) => {e.preventDefault() })
+        displayTrashItems()
+        setLeftButtonColor("trash-button", "red") 
+        i.disabled = true
+        
+    })
+     }
+}
+
 
 
 /// Setting button
 const settingButton = document.querySelector("#setting-button") 
 settingButton.addEventListener("click", () => {
-    displayMyProjectItems()
+    // displayMyProjectItems()
     setLeftButtonColor("setting-button", "#0066ff")
 })
 
 /// Help button
 const helpButton = document.querySelector("#help-button") 
 helpButton.addEventListener("click", () => {
-    displayMyProjectItems()
+   // displayMyProjectItems()
     setLeftButtonColor("help-button", "#0066ff") 
 })
 
@@ -377,22 +396,23 @@ helpButton.addEventListener("click", () => {
 
 const taskGroupContainer = document.querySelector(".todo-list-container") 
 taskGroupContainer.addEventListener("click", (e) => {
-    const allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
-    let clickedGroupNameLow = e.target.textContent.toLowerCase()
+    // Checking if trash is not selected
+    let trashIndicator = document.querySelector("#trash-button")
+    clog(trashIndicator.style.backgroundColor)
+    // if (trashIndicator.style.backgroundColor !== ""){alert("🔔 \nCan't edit trashed items! \nPlease restore items first.")}
+    if (trashIndicator.style.backgroundColor === ""){  
+        const allTaskFromStorage = JSON.parse( localStorage.getItem("toDoAppFolder2458987545") )
+        let clickedGroupNameLow = e.target.textContent.toLowerCase()
     for (let task in allTaskFromStorage){
         clog(clickedGroupNameLow) 
         let thisTask = allTaskFromStorage[task]
         if(thisTask && thisTask.group && thisTask.group.toLowerCase() === clickedGroupNameLow ){
-        clog( "Yeah Folder found: " + allTaskFromStorage[task].group )
+        clog( "🔔 Will now filter by group: " + allTaskFromStorage[task].group )
         clog("🔔 Now displaying task filtered by selected group")
         clog(clickedGroupNameLow)
-        displayGroupItems(clickedGroupNameLow)
-        }
-    
+        displayGroupItems(clickedGroupNameLow) }
     } 
-    
-    
-    setLeftButtonColor("group-button", "#0066ff") 
+    }
 })
  
 
