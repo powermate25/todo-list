@@ -123,7 +123,7 @@ const getSelectedGroupOld = function (){
 
 const getSelectedGroup = function (){
     const taskGroupInput = document.querySelector(".task-group input[id=group-input]")
-    if (taskGroupInput !== ""){
+    if (taskGroupInput.value !== ""){
     return groupSelected = taskGroupInput.value}
     else {groupSelected = "My projects"}
 }

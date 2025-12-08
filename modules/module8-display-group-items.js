@@ -118,7 +118,11 @@ for(let task in allTaskFromStorage){
     priorityValueP.textContent = tempPriority
     groupTitleP.textContent = "📁"
     groupValueP.textContent = tempGroup
-    dueDateTitleP.textContent = "⏰"
+    const dateIcon = document.createElement("img")
+    dateIcon.setAttribute("src", "./images/icons/clock.svg")
+    dateIcon.style.width ="1rem"
+    // dueDateTitleP.textContent = "⏰"
+    dueDateTitleP.append(dateIcon)
     dueDateValueP.textContent = dueDate
 
 
@@ -138,7 +142,7 @@ for(let task in allTaskFromStorage){
     priorityDiv.append(priorityTitleP)
     priorityDiv.append(priorityValueP)
 
-    overviewDiv.append(separatorDiv)
+    // overviewDiv.append(separatorDiv)
 
     overviewDiv.append(groupDiv)
     groupDiv.append(groupTitleP)
