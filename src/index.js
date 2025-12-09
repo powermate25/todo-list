@@ -7,17 +7,17 @@ import restoreSvg from "./images/icons/restore.svg"
 import trashSvg from "./images/icons/trash-can.svg"
 
 
-import { displayTimeDate } from "./modules/module1-dashboard-ui.js"
-import { Todo } from "./modules/module2-todo.js"
-import { formatInputToHashtags } from "./modules/module3-dialog-input-check.js"
-import { updateTaskColors } from "./modules/module4-display-main.js"
-import { displayTodoItems } from "./modules/module4-display-main.js"
-import { saveNote } from "./modules/module4-display-main.js"
-import { loadNote } from "./modules/module4-display-main.js"
-import { displayMyProjectItems } from "./modules/module5-display-myproject.js"
-import { displayTrashItems } from "./modules/module6-display-trash.js"
-import { displayGroupFolders } from "./modules/module7-group-folder-display.js"
-import { displayGroupItems } from "./modules/module8-display-group-items.js"
+import { displayTimeDate } from "./app/module1-dashboard-ui.js"
+import { Todo } from "./app/module2-todo.js"
+import { formatInputToHashtags } from "./app/module3-dialog-input-check.js"
+import { updateTaskColors } from "./app/module4-display-main.js"
+import { displayTodoItems } from "./app/module4-display-main.js"
+import { saveNote } from "./app/module4-display-main.js"
+import { loadNote } from "./app/module4-display-main.js"
+import { displayMyProjectItems } from "./app/module5-display-myproject.js"
+import { displayTrashItems } from "./app/module6-display-trash.js"
+import { displayGroupFolders } from "./app/module7-group-folder-display.js"
+import { displayGroupItems } from "./app/module8-display-group-items.js"
 
 
 
