@@ -9,9 +9,8 @@
     "deploy": "git subtree push --prefix dist origin gh-pages",
     "start": "webpack serve --open --config webpack.dev.js",
     "build2": "webpack --config webpack.prod.js"
-    
   },
-  "keywords": [], 
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
@@ -24,5 +23,8 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2",
     "webpack-merge": "^6.0.1"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
   }
 }
