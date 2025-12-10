@@ -1,5 +1,5 @@
 import "./styles.css";
-
+import { format } from "date-fns";
 if (process.env.NODE_ENV !== 'production') { console.log('Looks like we are in development mode!') }
 
 import profilePic from "./images/profile-pic.jpg"
@@ -142,8 +142,35 @@ const getSelectedGroup = function (){
     else {groupSelected = "My projects"}
 }
 
-clog(getSelectedGroup())
+// clog(getSelectedGroup())
 
+// getting selected due date
+/* const dueDateInput_ = document.querySelector("input[type=datetime-local]")
+clog(dueDateInput_.value)
+dueDateInput_.value = "2025-12-10T11:31" */
+
+let selectedDueDate
+// let formattedDueDate
+const getSelectedDueDate = function (){
+    const dueDateInput = document.querySelector("input[type=datetime-local]")
+    !dueDateInput.value ? selectedDueDate = "Untracked"
+    : selectedDueDate = dueDateInput.value
+    /* if(selectedDueDate !== "Untracked"){
+       let formattedDueDate
+       formattedDueDate = format(selectedDueDate, "MMM dd yyyy', 'HH':'mm ")
+       clog("🔔 Formatted date is: " + formattedDueDate)
+    } */
+}
+/* getSelectedDueDate()
+clog(selectedDueDate)
+const dueDate = new Date()
+clog(format(dueDate, "MMM dd yyyy', 'HH':'mm "))  */
+
+/// Process user dialog inputs
+
+processUserDialogInput = function (){
+    
+}
 
 // Confirm adding task dialog
 saveNewTaskBtn.addEventListener("click", () =>{
@@ -159,8 +186,10 @@ saveNewTaskBtn.addEventListener("click", () =>{
     //formatting first letter to uppercase for all folders
     let groupStr = groupSelected
     let groupStrToWellFormatted = groupStr.charAt(0).toUpperCase() + groupStr.slice(1).toLowerCase()
-    new Todo(title, description, priorityValue, groupStrToWellFormatted, "Untracked", ...filteredArrFromTags)
-    addNewTodoDialog.close()
+    getSelectedDueDate()
+    console.log("📣 User due date is: " + selectedDueDate)
+    new Todo(title, description, priorityValue, groupStrToWellFormatted, selectedDueDate, ...filteredArrFromTags)
+    // addNewTodoDialog.close()
 })
 
 // Confirm Update task dialog
@@ -278,6 +307,11 @@ taskListContainer.addEventListener("click", (e) => {
             taskGroupDataInput.value = currentTaskList[task].group
             // Done Reloading field values from current task and auto-filling dialog inputs
 
+            let dueDateInput = document.querySelector("input[type=datetime-local]")
+            currentTaskList[task].dueDate !== "Untracked" ?
+            dueDateInput.value = currentTaskList[task].dueDate
+            : dueDateInput.value = ""
+
             updateTaskBtn.addEventListener("click", () =>{
                 clog("Update Button is clicked!")
                 
@@ -294,6 +328,11 @@ taskListContainer.addEventListener("click", (e) => {
                 let groupStr = groupSelected
                 let groupStrToWellFormatted = groupStr.charAt(0).toUpperCase() + groupStr.slice(1).toLowerCase()
                 currentTaskList[task].group = groupStrToWellFormatted
+                
+                // Handling due date input conversion to string
+                !dueDateInput.value ? currentTaskList[task].dueDate = "Untracked"
+                : currentTaskList[task].dueDate = dueDateInput.value
+
                 localStorage.setItem("toDoAppFolder2458987545", JSON.stringify(currentTaskList) )
                 addNewTodoDialog.close()
                 displayTodoItems()

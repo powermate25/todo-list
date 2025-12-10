@@ -1,3 +1,4 @@
+import { format } from "date-fns"
 import { displayTimeDate } from "./module1-dashboard-ui.js"
 import { Todo } from "./module2-todo.js"
 import { formatInputToHashtags } from "./module3-dialog-input-check.js"
@@ -121,7 +122,12 @@ for(let task in allTaskFromStorage){
     else if (currentTask.priority === 1) {tempPriority = "Normal"}
     else if (currentTask.priority === 2) {tempPriority = "High"}
     let tempGroup = currentTask.group
-    let dueDate = currentTask.dueDate
+    let dueDate
+        if(currentTask.dueDate !== "Untracked"){
+            clog(currentTask.dueDate)
+           dueDate = format(currentTask.dueDate, "MMM dd yyyy', 'HH':'mm ")
+           clog("🔔 (Will now format task dueDate). Formatted date is: " + dueDate)
+        } else { dueDate = currentTask.dueDate }
 
     // Appending details to corresponding divs
     summaryEle.textContent = tempTitle

@@ -93,7 +93,7 @@ form input {
     height: 2rem; 
 }
 
-form input[type="text"], form input[list="group-list"], form textarea, form .task-color, .priority-container  {
+form input[type="text"], form input[list="group-list"], form input[type="datetime-local"], form textarea, form .task-color, .priority-container  {
     border-width: 1px;
     border-color: oklch(70.3% 5% 259.815 / 0.3);  
     border-radius: 6px;  
@@ -107,7 +107,7 @@ form textarea {
     padding-top: 0.4rem;
 }
 
-form input[type="text"]:focus, form input[list="group-list"]:focus, form textarea:focus, form .task-color:focus {
+form input[type="text"]:focus, form input[list="group-list"]:focus, form input[type="datetime-local"]:focus, form textarea:focus, form .task-color:focus {
     border-color: oklch(62.3% 90% 259.815);
     border-width: 3px;
     border-left: 12px solid oklch(62.3% 0.214 259.815);
@@ -115,7 +115,7 @@ form input[type="text"]:focus, form input[list="group-list"]:focus, form textare
     box-shadow: 3px 4px 6px oklch(80.3% 1% 259.815 / 0.6)
 }
 
-form input[list="group-list"] {
+form input[list="group-list"], form input[type="datetime-local"] {
     width: 100%;
     height: 2rem;
     font-family: inherit;
@@ -587,15 +587,22 @@ dialog form button:hover {
 
 .overview .status {
     width: 8rem;
+    min-width: 8rem;
+    max-width: 8rem;
+    /* border: 1px solid blue; */
     
 }
 
 .overview .priority {
     width: 6.8rem; 
+    min-width: 6.4rem;
+    max-width: 6.4rem;
+    /* border: 1px solid blue; */
     
 }
 .overview .group {
-    width: 6.4rem;
+    min-width: 6.4rem;
+    max-width: 6.4rem;
     padding: 0 0.4rem 0 0;
     overflow: hidden; 
     text-overflow: ellipsis; 
@@ -605,6 +612,8 @@ dialog form button:hover {
 }
 
 .overview .due-date {
+    width: 16rem;
+    min-width: fit-content ;
     max-width: 16.8rem;
     text-overflow: ellipsis;
     white-space: nowrap;
