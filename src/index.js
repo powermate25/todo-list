@@ -91,6 +91,7 @@ addNewTask.forEach(i =>{
     saveNewTaskBtn.style.display = ""
    // UnfilteredGrpFolder = []
     populateDialogGroupOption()
+    setMinAllowedDateToday()
     addNewTodoDialog.showModal() })
 })
 
@@ -150,21 +151,36 @@ clog(dueDateInput_.value)
 dueDateInput_.value = "2025-12-10T11:31" */
 
 let selectedDueDate
-// let formattedDueDate
+
+const setMinAllowedDateToday = function(){
+    // Raw formatting today current date
+    let dateNow = new Date()
+    /* let currentDay = dateNow.getDay()
+    currentDay < 9 ? currentDay = `0${currentDay}`
+    : currentDay */
+
+    let currentYear = dateNow.getUTCFullYear()
+    let currentMonth = dateNow.getUTCMonth() + 1
+    let currentDay = dateNow.getUTCDate()
+    let currentTimeHours = dateNow.getUTCHours()
+    let currentTimeMinutes = dateNow.getUTCMinutes()
+    let todayDateRAW = `${currentYear}-${currentMonth}-${currentDay}T${currentTimeHours}:${currentTimeMinutes}`
+    clog( `${currentYear}-${currentMonth}-${currentDay}T${currentTimeHours}:${currentTimeMinutes}`  )
+    // Setting min date to today current
+    const dueDateInput = document.querySelector("input[type=datetime-local]")
+    if(dueDateInput){
+    dueDateInput.setAttribute("min", todayDateRAW)
+    clog("🔔 Min allowed date is set to current time")
+    }
+    
+}
+
 const getSelectedDueDate = function (){
     const dueDateInput = document.querySelector("input[type=datetime-local]")
     !dueDateInput.value ? selectedDueDate = "Untracked"
     : selectedDueDate = dueDateInput.value
-    /* if(selectedDueDate !== "Untracked"){
-       let formattedDueDate
-       formattedDueDate = format(selectedDueDate, "MMM dd yyyy', 'HH':'mm ")
-       clog("🔔 Formatted date is: " + formattedDueDate)
-    } */
 }
-/* getSelectedDueDate()
-clog(selectedDueDate)
-const dueDate = new Date()
-clog(format(dueDate, "MMM dd yyyy', 'HH':'mm "))  */
+
 
 /// Process user dialog inputs
 
@@ -271,6 +287,7 @@ taskListContainer.addEventListener("click", (e) => {
             clog("🔔 Edit button pressed!")
             clog("🔔 Item matched. Now opening editing dialog")
             populateDialogGroupOption()
+            setMinAllowedDateToday()
             addNewTodoDialog.showModal()
             // Reloading field values from current task and auto-filling dialog inputs
             //Also populating dialog group option with current group
