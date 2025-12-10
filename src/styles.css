@@ -640,7 +640,7 @@ dialog form button:hover {
 
 .overview .due-date p:nth-of-type(2) {
     color: green ;
-    cursor: pointer;
+    
 }
 
 /* .todo-item .overview span {
