@@ -168,12 +168,7 @@ clog(format(dueDate, "MMM dd yyyy', 'HH':'mm "))  */
 
 /// Process user dialog inputs
 
-processUserDialogInput = function (){
-    
-}
-
-// Confirm adding task dialog
-saveNewTaskBtn.addEventListener("click", () =>{
+const processUserDialogInput = function (){
     let title = todoTitle.value
     let description = todoDescription.value
     getRadioPriority()
@@ -189,7 +184,12 @@ saveNewTaskBtn.addEventListener("click", () =>{
     getSelectedDueDate()
     console.log("📣 User due date is: " + selectedDueDate)
     new Todo(title, description, priorityValue, groupStrToWellFormatted, selectedDueDate, ...filteredArrFromTags)
-    // addNewTodoDialog.close()
+}
+
+// Confirm adding task dialog
+saveNewTaskBtn.addEventListener("click", () =>{
+    processUserDialogInput()
+    addNewTodoDialog.close()
 })
 
 // Confirm Update task dialog
